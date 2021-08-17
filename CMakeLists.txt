@@ -1,16 +1,28 @@
 cmake_minimum_required(VERSION 2.8)
 project(ORB_SLAM2)
 
+
+############################################################
+# Build Type
+############################################################
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release)
 ENDIF()
 
 MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
+############################################################
+#  C/C++ Flags
+############################################################
+# -O3 编译等级优化为3
+# -Wall 开启所有警告
+# -march=native, which automatically detects the features your CPU supports and sets the options appropriately.
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
 
+############################################################
 # Check C++11 or C++0x support
+############################################################
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
@@ -26,17 +38,30 @@ else()
    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
+############################################################
+# Cmake Moudule Path
+############################################################
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
+message(${CMAKE_MODULE_PATH})
 
-find_package(OpenCV 3.0 QUIET)
-if(NOT OpenCV_FOUND)
-   find_package(OpenCV 2.4.3 QUIET)
-   if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-   endif()
-endif()
+############################################################
+# 寻找库并包含路径
+############################################################
+#修改库路径
+set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/3.4.12/opencv-3.4.12/builds")
+#set(Pangolin_DIR "/home/divenire/myDisk/WorkSpace/LIB_store/Pangolin/build/src")
 
-find_package(Eigen3 3.1.0 REQUIRED)
+
+find_package(OpenCV  REQUIRED)
+
+# if(NOT OpenCV_FOUND)
+#    find_package(OpenCV 2.4.3 QUIET)
+#    if(NOT OpenCV_FOUND)
+#       message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
+#    endif()
+# endif()
+
+find_package(Eigen3  REQUIRED)
 find_package(Pangolin REQUIRED)
 
 include_directories(
@@ -46,6 +71,9 @@ ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 )
 
+############################################################
+# 设置库文件输出路径，生成库文件
+############################################################
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 add_library(${PROJECT_NAME} SHARED
@@ -78,8 +106,10 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 )
 
-# Build examples
-
+############################################################
+# 输出可执行文件
+############################################################
+## 二进制文件输出路径
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/RGB-D)
 
 add_executable(rgbd_tum
@@ -111,3 +141,10 @@ add_executable(mono_euroc
 Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
 
+# Self example
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/myvideo)
+add_executable(myvideo Examples/myvideo/myvideo.cpp)
+target_link_libraries(myvideo ${PROJECT_NAME})
+
+add_executable(myslam Examples/myvideo/myslam.cpp)
+target_link_libraries(myslam ${PROJECT_NAME})
