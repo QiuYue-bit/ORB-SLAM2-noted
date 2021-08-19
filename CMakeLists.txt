@@ -48,7 +48,7 @@ message(${CMAKE_MODULE_PATH})
 # 寻找库并包含路径
 ############################################################
 #修改库路径
-set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/3.4.12/opencv-3.4.12/builds")
+set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/3.4.12/opencv-3.4.12/build")
 #set(Pangolin_DIR "/home/divenire/myDisk/WorkSpace/LIB_store/Pangolin/build/src")
 
 
