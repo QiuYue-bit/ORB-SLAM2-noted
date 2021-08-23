@@ -33,6 +33,7 @@
 #include "Tracking.h"
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>
+#include <opencv2/imgproc/imgproc_c.h>
 
 #include "ORBmatcher.h"
 #include "FrameDrawer.h"
@@ -40,8 +41,12 @@
 #include "Map.h"
 #include "Initializer.h"
 
+
+
 #include "Optimizer.h"
 #include "PnPsolver.h"
+
+#include <unistd.h>
 
 #include <iostream>
 #include <cmath>

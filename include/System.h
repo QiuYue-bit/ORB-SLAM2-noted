@@ -30,6 +30,7 @@
 #include <string>
 #include <thread>
 #include <opencv2/core/core.hpp>
+#include <unistd.h>
 
 //下面则是本ORB-SLAM2系统中的其他模块
 #include "Tracking.h"

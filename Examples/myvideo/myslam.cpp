@@ -6,6 +6,7 @@
 
 // 需要opencv
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs/legacy/constants_c.h>
 
 // ORB-SLAM的系统接口
 #include "System.h"
@@ -18,7 +19,7 @@ using namespace std;
 
 // 参数文件与字典文件
 // 如果你系统上的路径不同，请修改它
-string parameterFile = "./myslam.yaml";
+string parameterFile = "./myvideo.yaml";
 string vocFile = "../../Vocabulary/ORBvoc.txt";
 
 int main(int argc, char **argv) {
@@ -28,7 +29,8 @@ int main(int argc, char **argv) {
 
 
     // 获取相机图像代码
-    cv::VideoCapture cap(0);    // change to 1 if you want to use USB camera.
+    cv::VideoCapture cap(1);    // change to 1 if you want to use USB camera.
+                                // 0 系统相机
 
     // 分辨率设为640x480
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);

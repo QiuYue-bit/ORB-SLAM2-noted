@@ -29,8 +29,9 @@ else()
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../../../cmake_modules)
+set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build")
 
-find_package(OpenCV 3.0 QUIET)
+find_package(OpenCV  REQUIRED)
 if(NOT OpenCV_FOUND)
    find_package(OpenCV 2.4.3 QUIET)
    if(NOT OpenCV_FOUND)
