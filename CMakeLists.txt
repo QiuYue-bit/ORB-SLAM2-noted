@@ -149,3 +149,8 @@ target_link_libraries(myvideo ${PROJECT_NAME})
 
 add_executable(myslam Examples/myvideo/myslam.cpp)
 target_link_libraries(myslam ${PROJECT_NAME})
+
+# D435i
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Sensors)
+add_executable(mono_d435i Examples/Sensors/mono_d435i.cc)
+target_link_libraries(mono_d435i ${PROJECT_NAME})

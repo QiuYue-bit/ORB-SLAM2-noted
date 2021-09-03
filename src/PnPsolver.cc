@@ -101,7 +101,7 @@
 
 #include <vector>
 #include <cmath>
-#include <opencv2/core/core.hpp>
+#include <opencv2/core.hpp>
 #include <opencv2/core/core_c.h>
 #include "Thirdparty/DBoW2/DUtils/Random.h"
 #include <algorithm>
@@ -1235,66 +1235,66 @@ void PnPsolver::compute_A_and_b_gauss_newton(const double * l_6x10, const double
 {
   // 以下推导就是求解一阶雅克比矩阵
 
-  // /* 根据前面函数 gauss_newton 中的一些工作,可以发现这里的系数矩阵其实就是目标函数雅克比的转置. 原目标函数:
-  //  * \f$ f(\mathbf{\beta})=\sum_{(i,j \  s.t. \  i<j)} \left( ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2 - ||\mathbf{c}^w_i-\mathbf{c}^w_j ||^2 \right)  \f$ 
-  //  * 然后观察一下每一项的组成: \f$ ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2  \f$ 由论文中式12可以发现就对应着矩阵 L 中的一行,
-  //  * 同样地对于 \f$ ||\mathbf{c}^w_i-\mathbf{c}^w_j ||^2  \f$ 则对应着式(13)中向量 \f$  \mathbf{\rho} \f$ 的每一行.所以目标函数完全可以写成矩阵的形式:
-  //  * \f$ f(\mathbf{\beta})=\mathbf{L}\mathbf{\bar{\beta}}-\mathbf{\rho}  \f$
-  //  * 注意这里使用的符号:
-  //  * \f$ \mathbf{\bar{\beta}}= \begin{bmatrix} \beta_{11}\\\beta_{12}\\\beta_{22}\\\beta_{13}\\\beta_{23}\\\beta_{33}\\\beta_{14}\\\beta_{24}\\\beta_{34}\\\beta_{44} \end{bmatrix} \f$
-  //  * 为了方便求导,计算得到一个中间结果先:
-  //  * \f$ \begin{split}
-  //  *  \mathbf{\bar{L}}&=\mathbf{L}\mathbf{\bar{\beta}}\\
-  //  *  &=
-  //  *  \begin{bmatrix}
-  //  *  L_{11}\beta_{11}+L_{12}\beta_{12}+L_{13}\beta_{22}+\cdots+L_{1A}\beta_{44}\\
-  //  *  L_{21}\beta_{11}+L_{22}\beta_{22}+L_{13}\beta_{22}+\cdots+L_{2A}\beta_{44}\\
-  //  *  \cdots\\
-  //  *  L_{61}\beta_{11}+L_{62}\beta_{22}+L_{63}\beta_{22}+\cdots+L_{6A}\beta_{44}\\
-  //  *  \end{bmatrix}
-  //  *  &=
-  //  *  \begin{bmatrix}
-  //  *  \mathbf{L_1}\\\mathbf{L_2}\\\cdots\\\mathbf{L_3}
-  //  *  \end{bmatrix}
-  //  *  \end{split} \f$
-  //  *  然后原来的目标函数矩阵表示变成为了:
-  //  *  \f$  f(\mathbf{\beta})=\mathbf{\bar{L}}-\mathbf{\rho} \f$
-  //  *  接下来准备求目标函数的雅克比.注意到只有矩阵 \f$ \mathbf{\bar{L}} \f$ 和优化变量 \f$ \mathbf{\beta} \f$ 有关系,因此有:
-  //  * \f$ \begin{split}
-  //  * \frac{\partial f(\mathbf{\beta})}{\partial \mathbf{\beta}}&=\frac{\partial \mathbf{L}}{\partial \mathbf{\beta}}\\
-  //  * &=
-  //  * \begin{bmatrix}
-  //  * \frac{\partial \mathbf{L}}{\partial \beta_1}&\frac{\partial \mathbf{L}}{\partial \beta_2}&
-  //  * \frac{\partial \mathbf{L}}{\partial \beta_3}&\frac{\partial \mathbf{L}}{\partial \beta_4}
-  //  * \end{bmatrix} \\
-  //  * &=
-  //  * \begin{bmatrix}
-  //  * \frac{\partial \mathbf{L}_1}{\partial \beta_1}&\frac{\partial \mathbf{L}_1}{\partial \beta_2}&
-  //  * \frac{\partial \mathbf{L}_1}{\partial \beta_3}&\frac{\partial \mathbf{L}_1}{\partial \beta_4}\\
-  //  * \frac{\partial \mathbf{L}_2}{\partial \beta_1}&\frac{\partial \mathbf{L}_2}{\partial \beta_2}&
-  //  * \frac{\partial \mathbf{L}_2}{\partial \beta_3}&\frac{\partial \mathbf{L}_2}{\partial \beta_4}\\
-  //  * \cdots&\cdots&\cdots&\cdots\\
-  //  * \frac{\partial \mathbf{L}_6}{\partial \beta_1}&\frac{\partial \mathbf{L}_6}{\partial \beta_2}&
-  //  * \frac{\partial \mathbf{L}_6}{\partial \beta_3}&\frac{\partial \mathbf{L}_6}{\partial \beta_4}
-  //  * \end{bmatrix}
-  //  * \end{split} \f$
-  //  * 从优化目标函数的概念触发,其中的每一行的约束均由一对点来提供,因此不同行之间其实并无关系,可以相互独立地计算,因此对于其中的每一行:(以第一行为例)
-  //  * \f$ \mathbf{L}_1=
-  //  * \beta_{11}L_{11}+\beta_{12}L_{12}+\beta_{22}L_{13}+\beta_{13}L_{14}+\beta_{23}L_{15}+
-  //  * \beta_{33}L_{16}+\beta_{14}L_{17}+\beta_{24}L_{18}+\beta_{34}L_{19}+\beta_{44}L_{1A} \f$
-  //  * 分别对beat进行求导:(注意为了方便这里把L的下标从1开始变成了从0开始)
-  //  * \f$ \frac{\partial \mathbf{L}_1}{\partial \beta_1}=2\beta_1L_{10}+\beta_2L_{11}+\beta_3L_{13}+\beta_4L_{16} \\
-  //  * \frac{\partial \mathbf{L}_1}{\partial \beta_2}=\beta_1L_{11}+2\beta_2L_{12}+\beta_3L_{14}+\beta_4L_{17} \\
-  //  * \frac{\partial \mathbf{L}_1}{\partial \beta_3}=\beta_1L_{13}+\beta_2L_{14}+2\beta_3L_{15}+\beta_4L_{18} \\
-  //  * \frac{\partial \mathbf{L}_1}{\partial \beta_4}=\beta_1L_{16}+\beta_2L_{17}+\beta_3L_{18}+2\beta_4L_{19}  \f$
-  //  * 就是下面计算每一行的雅克比的式子.
-  //  * 
-  //  * 另外对于当前行的非齐次项, 在 gauss_newton 中简化后得到的结果为 -f(x), 也就是:
-  //  * \f$ ||\mathbf{c}^w_i-\mathbf{c}^w_j ||^2 - ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2 \f$
-  //  * 每一行都会有一个特定的i和j.上式中的前者可以直接由 \f$ \mathbf{\rho} \f$ 的对应行给定,而后者则要根据论文公式(12)给出了:
-  //  * \f$ ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2 = \mathbf{L}_k\mathbf{\bar{\beta}} \f$ 
-  //  * 这个也就是非齐次项部分的计算过程
-  //  */
+  /* 根据前面函数 gauss_newton 中的一些工作,可以发现这里的系数矩阵其实就是目标函数雅克比的转置. 原目标函数:
+   * \f$ f(\mathbf{\beta})=\sum_{(i,j \  s.t. \  i<j)} \left( ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2 - ||\mathbf{c}^w_i-\mathbf{c}^w_j ||^2 \right)  \f$ 
+   * 然后观察一下每一项的组成: \f$ ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2  \f$ 由论文中式12可以发现就对应着矩阵 L 中的一行,
+   * 同样地对于 \f$ ||\mathbf{c}^w_i-\mathbf{c}^w_j ||^2  \f$ 则对应着式(13)中向量 \f$  \mathbf{\rho} \f$ 的每一行.所以目标函数完全可以写成矩阵的形式:
+   * \f$ f(\mathbf{\beta})=\mathbf{L}\mathbf{\bar{\beta}}-\mathbf{\rho}  \f$
+   * 注意这里使用的符号:
+   * \f$ \mathbf{\bar{\beta}}= \begin{bmatrix} \beta_{11}\\\beta_{12}\\\beta_{22}\\\beta_{13}\\\beta_{23}\\\beta_{33}\\\beta_{14}\\\beta_{24}\\\beta_{34}\\\beta_{44} \end{bmatrix} \f$
+   * 为了方便求导,计算得到一个中间结果先:
+   * \f$ \begin{split}
+   *  \mathbf{\bar{L}}&=\mathbf{L}\mathbf{\bar{\beta}}\\
+   *  &=
+   *  \begin{bmatrix}
+   *  L_{11}\beta_{11}+L_{12}\beta_{12}+L_{13}\beta_{22}+\cdots+L_{1A}\beta_{44}\\
+   *  L_{21}\beta_{11}+L_{22}\beta_{22}+L_{13}\beta_{22}+\cdots+L_{2A}\beta_{44}\\
+   *  \cdots\\
+   *  L_{61}\beta_{11}+L_{62}\beta_{22}+L_{63}\beta_{22}+\cdots+L_{6A}\beta_{44}\\
+   *  \end{bmatrix}
+   *  &=
+   *  \begin{bmatrix}
+   *  \mathbf{L_1}\\\mathbf{L_2}\\\cdots\\\mathbf{L_3}
+   *  \end{bmatrix}
+   *  \end{split} \f$
+   *  然后原来的目标函数矩阵表示变成为了:
+   *  \f$  f(\mathbf{\beta})=\mathbf{\bar{L}}-\mathbf{\rho} \f$
+   *  接下来准备求目标函数的雅克比.注意到只有矩阵 \f$ \mathbf{\bar{L}} \f$ 和优化变量 \f$ \mathbf{\beta} \f$ 有关系,因此有:
+   * \f$ \begin{split}
+   * \frac{\partial f(\mathbf{\beta})}{\partial \mathbf{\beta}}&=\frac{\partial \mathbf{L}}{\partial \mathbf{\beta}}\\
+   * &=
+   * \begin{bmatrix}
+   * \frac{\partial \mathbf{L}}{\partial \beta_1}&\frac{\partial \mathbf{L}}{\partial \beta_2}&
+   * \frac{\partial \mathbf{L}}{\partial \beta_3}&\frac{\partial \mathbf{L}}{\partial \beta_4}
+   * \end{bmatrix} \\
+   * &=
+   * \begin{bmatrix}
+   * \frac{\partial \mathbf{L}_1}{\partial \beta_1}&\frac{\partial \mathbf{L}_1}{\partial \beta_2}&
+   * \frac{\partial \mathbf{L}_1}{\partial \beta_3}&\frac{\partial \mathbf{L}_1}{\partial \beta_4}\\
+   * \frac{\partial \mathbf{L}_2}{\partial \beta_1}&\frac{\partial \mathbf{L}_2}{\partial \beta_2}&
+   * \frac{\partial \mathbf{L}_2}{\partial \beta_3}&\frac{\partial \mathbf{L}_2}{\partial \beta_4}\\
+   * \cdots&\cdots&\cdots&\cdots\\
+   * \frac{\partial \mathbf{L}_6}{\partial \beta_1}&\frac{\partial \mathbf{L}_6}{\partial \beta_2}&
+   * \frac{\partial \mathbf{L}_6}{\partial \beta_3}&\frac{\partial \mathbf{L}_6}{\partial \beta_4}
+   * \end{bmatrix}
+   * \end{split} \f$
+   * 从优化目标函数的概念触发,其中的每一行的约束均由一对点来提供,因此不同行之间其实并无关系,可以相互独立地计算,因此对于其中的每一行:(以第一行为例)
+   * \f$ \mathbf{L}_1=
+   * \beta_{11}L_{11}+\beta_{12}L_{12}+\beta_{22}L_{13}+\beta_{13}L_{14}+\beta_{23}L_{15}+
+   * \beta_{33}L_{16}+\beta_{14}L_{17}+\beta_{24}L_{18}+\beta_{34}L_{19}+\beta_{44}L_{1A} \f$
+   * 分别对beat进行求导:(注意为了方便这里把L的下标从1开始变成了从0开始)
+   * \f$ \frac{\partial \mathbf{L}_1}{\partial \beta_1}=2\beta_1L_{10}+\beta_2L_{11}+\beta_3L_{13}+\beta_4L_{16} \\
+   * \frac{\partial \mathbf{L}_1}{\partial \beta_2}=\beta_1L_{11}+2\beta_2L_{12}+\beta_3L_{14}+\beta_4L_{17} \\
+   * \frac{\partial \mathbf{L}_1}{\partial \beta_3}=\beta_1L_{13}+\beta_2L_{14}+2\beta_3L_{15}+\beta_4L_{18} \\
+   * \frac{\partial \mathbf{L}_1}{\partial \beta_4}=\beta_1L_{16}+\beta_2L_{17}+\beta_3L_{18}+2\beta_4L_{19}  \f$
+   * 就是下面计算每一行的雅克比的式子.
+   * 
+   * 另外对于当前行的非齐次项, 在 gauss_newton 中简化后得到的结果为 -f(x), 也就是:
+   * \f$ ||\mathbf{c}^w_i-\mathbf{c}^w_j ||^2 - ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2 \f$
+   * 每一行都会有一个特定的i和j.上式中的前者可以直接由 \f$ \mathbf{\rho} \f$ 的对应行给定,而后者则要根据论文公式(12)给出了:
+   * \f$ ||\mathbf{c}^c_i-\mathbf{c}^c_j ||^2 = \mathbf{L}_k\mathbf{\bar{\beta}} \f$ 
+   * 这个也就是非齐次项部分的计算过程
+   */
 
 
 
