@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-09-03 17:58:50
+ * @LastEditTime: 2021-09-03 20:41:39
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /ORB_SLAM2_detailed_comments/Examples/Sensors/mono_d435i.cc
+ */
 #include <iostream>
 #include <chrono>
 

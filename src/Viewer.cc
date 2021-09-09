@@ -79,7 +79,7 @@ void Viewer::Run()
     //这个变量配合SetFinish函数用于指示该函数是否执行完毕
     mbFinished = false;
 
-    pangolin::CreateWindowAndBind("ORB-SLAM2: Map Viewer",1024,768);
+    pangolin::CreateWindowAndBind("Map Viewer",1024,768);
 
     // 3D Mouse handler requires depth testing to be enabled
     // 启动深度测试，OpenGL只绘制最前面的一层，绘制时检查当前像素前面是否有别的像素，如果别的像素挡住了它，那它就不会绘制
@@ -124,7 +124,7 @@ void Viewer::Run()
     Twc.SetIdentity();
 
     //创建当前帧图像查看器,谢晓佳在泡泡机器人的第35课中讲过这个;需要先声明窗口,再创建;否则就容易出现窗口无法刷新的情况
-    cv::namedWindow("ORB-SLAM2: Current Frame");
+    cv::namedWindow("Current Frame");
 
     //ui设置
     bool bFollow = true;
@@ -189,7 +189,7 @@ void Viewer::Run()
 
         // step 4:绘制当前帧图像和特征点提取匹配结果
         cv::Mat im = mpFrameDrawer->DrawFrame();
-        cv::imshow("ORB-SLAM2: Current Frame",im);
+        cv::imshow("Current Frame",im);
         //NOTICE 注意对于我所遇到的问题,ORB-SLAM2是这样子来处理的
         cv::waitKey(mT);
 
