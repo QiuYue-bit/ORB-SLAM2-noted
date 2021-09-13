@@ -3,13 +3,13 @@
     <arg name="image_l" default="/camera/infra1/image_rect_raw"/>
     <arg name="image_r" default="/camera/infra2/image_rect_raw"/>
     <arg name="path_to_vacabulary" default="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Vocabulary/ORBvoc.txt"/>
-    <arg name="path_to_settings" default="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/ROS/ORB_SLAM2/D435i.yaml"/>
+    <arg name="path_to_settings" default="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/ROS/ORB_SLAM2/D435_stereo.yaml"/>
     <!--启动摄像头节点(realsense)-->
-    <include file="$(find realsense2_camera)/launch/m_rs_camera1.launch"/>
+    <include file="$(find realsense2_camera)/launch/m_stereo_435.launch"/>
 
     <!--启动ORB-SLAM2 RGBD-->
     <node name ="Stereo" pkg="ORB_SLAM2" type="Stereo" 
-        args="$(arg path_to_vacabulary) $(arg path_to_settings) true" respawn="true" output="screen">
+        args="$(arg path_to_vacabulary) $(arg path_to_settings) false" respawn="true" output="screen">
         <remap from="/camera/left/image_raw" to="$(arg image_l)"/>
         <remap from="/camera/right/image_raw" to="$(arg image_r)"/>
     </node>
