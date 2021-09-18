@@ -93,7 +93,7 @@ void Viewer::Run()
 
     // 新建按钮和选择框，第一个参数为按钮的名字，第二个为默认状态，第三个为是否有选择框
     pangolin::CreatePanel("menu").SetBounds(0.0,1.0,0.0,pangolin::Attach::Pix(175));
-    pangolin::Var<bool> menuFollowCamera("menu.Follow Camera",true,true);
+    pangolin::Var<bool> menuFollowCamera("menu.Follow Camera",false,true);
     pangolin::Var<bool> menuShowPoints("menu.Show Points",true,true);
     pangolin::Var<bool> menuShowKeyFrames("menu.Show KeyFrames",true,true);
     pangolin::Var<bool> menuShowGraph("menu.Show Graph",true,true);
@@ -111,7 +111,7 @@ void Viewer::Run()
                 );
 
     // Add named OpenGL viewport to window and provide 3D Handler
-    // 定义显示面板大小，orbslam中有左右两个面板，昨天显示一些按钮，右边显示图形
+    // 定义显示面板大小，orbslam中有左右两个面板，左边显示一些按钮，右边显示图形
     // 前两个参数（0.0, 1.0）表明宽度和面板纵向宽度和窗口大小相同
     // 中间两个参数（pangolin::Attach::Pix(175), 1.0）表明右边所有部分用于显示图形
     // 最后一个参数（-1024.0f/768.0f）为显示长宽比
@@ -127,7 +127,7 @@ void Viewer::Run()
     cv::namedWindow("Current Frame");
 
     //ui设置
-    bool bFollow = true;
+    bool bFollow = false;
     bool bLocalizationMode = false;
 
     //更新绘制的内容
@@ -135,6 +135,9 @@ void Viewer::Run()
     {
         // 清除缓冲区中的当前可写的颜色缓冲 和 深度缓冲
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+
 
         // step1：得到最新的相机位姿
         mpMapDrawer->GetCurrentOpenGLCameraMatrix(Twc);
@@ -185,12 +188,37 @@ void Viewer::Run()
         if(menuShowPoints)
             mpMapDrawer->DrawMapPoints();
 
+
+        /*==================================================================*/
+
+
+            // 绘制坐标系
+        glLineWidth(3);
+        glBegin ( GL_LINES );
+        glColor3f ( 1.0f,0.f,0.f );
+        glVertex3f( 0,0,0 );
+        glVertex3f( 10,0,0 );
+        glColor3f( 0.f,1.0f,0.f);
+        glVertex3f( 0,0,0 );
+        glVertex3f( 0,10,0 );
+        glColor3f( 0.f,0.f,1.f);
+        glVertex3f( 0,0,0 );
+        glVertex3f( 0,0,10 );
+        glEnd();
+
+
+
+
+
+        /*==================================================================*/
+
+
         pangolin::FinishFrame();
 
         // step 4:绘制当前帧图像和特征点提取匹配结果
         cv::Mat im = mpFrameDrawer->DrawFrame();
         cv::imshow("Current Frame",im);
-        //NOTICE 注意对于我所遇到的问题,ORB-SLAM2是这样子来处理的
+        // NOTICE 注意对于我所遇到的问题,ORB-SLAM2是这样子来处理的
         cv::waitKey(mT);
 
         // step 5 相应其他请求
