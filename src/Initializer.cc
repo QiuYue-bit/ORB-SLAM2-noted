@@ -106,7 +106,7 @@ bool Initializer::Initialize(const Frame &CurrentFrame, const vector<int> &vMatc
     // 将vMatches12（有冗余） 转化为 mvMatches12（只记录了匹配关系）
     for(size_t i=0, iend=vMatches12.size();i<iend; i++)
     {
-		//vMatches12[i]解释：i表示帧1中关键点的索引值，vMatches12[i]的值为帧2的关键点索引值
+		//vMatches12[i]解释：i表示参考帧1中关键点的索引值，vMatches12[i]的值为当前帧帧2的关键点索引值
         //没有匹配关系的话，vMatches12[i]值为 -1
         if(vMatches12[i]>=0)
         {

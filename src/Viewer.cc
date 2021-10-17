@@ -332,4 +332,4 @@ void Viewer::Release()
     mbStopped = false;
 }
 
-}
+}//namespace ORBSLAM2

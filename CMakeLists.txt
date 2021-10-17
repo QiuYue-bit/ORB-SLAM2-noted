@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 project(ORB_SLAM2)
-
 
 ############################################################
 # Build Type
@@ -14,30 +13,25 @@ MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 ############################################################
 #  C/C++ Flags
 ############################################################
-# -O3 编译等级优化为3
+# -O3 编译等级优化为3上 开启了这个就不能用debug,会丢失信息了
 # -Wall 开启所有警告
 # -march=native, which automatically detects the features your CPU supports and sets the options appropriately.
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
-
-############################################################
-# Check C++11 or C++0x support
-############################################################
-include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-if(COMPILER_SUPPORTS_CXX11)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-   add_definitions(-DCOMPILEDWITHC11)
-   message(STATUS "Using flag -std=c++11.")
-elseif(COMPILER_SUPPORTS_CXX0X)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-   add_definitions(-DCOMPILEDWITHC0X)
-   message(STATUS "Using flag -std=c++0x.")
-else()
-   message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+if(CMAKE_BUILD_TYPE MATCHES Release)
+   MESSAGE("开启编译器优化")
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
 endif()
+########################################s####################
+# Check C++14
+############################################################
+# 设置指定的C++编译器版本是必须的，如果不设置，或者为OFF，则指定版本不可用时，会使用上一版本。
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# 指定为C++14 版本
+set(CMAKE_CXX_STANDARD 14)
+
+# 程序中有使用这个宏定义
+add_definitions(-DCOMPILEDWITHC11)
 ############################################################
 # Cmake Moudule Path
 ############################################################
@@ -47,12 +41,9 @@ message(${CMAKE_MODULE_PATH})
 ############################################################
 # 寻找库并包含路径
 ############################################################
-#修改库路径
+# OpenCV
 set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build")
 #set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/3.4.12/opencv-3.4.12/build")
-#set(Pangolin_DIR "/home/divenire/myDisk/WorkSpace/LIB_store/Pangolin/build/src")
-
-
 find_package(OpenCV  REQUIRED)
 
 # if(NOT OpenCV_FOUND)
@@ -62,14 +53,20 @@ find_package(OpenCV  REQUIRED)
 #    endif()
 # endif()
 
-find_package(Eigen3  REQUIRED)
+#Eigen
+# include_directories(/home/divenire/Divenire_ws/libsStore/EIGEN/eigen-3.2.1/eigen-3.2.1)
+include_directories(/home/divenire/Divenire_ws/libsStore/EIGEN/eigen-3.3.8)
+
+#PANGOLIN
+#set(Pangolin_DIR "/home/divenire/myDisk/WorkSpace/LIB_store/Pangolin/build/src")
 find_package(Pangolin REQUIRED)
+include_directories(${Pangolin_INCLUDE_DIRS})
+
+
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
-${EIGEN3_INCLUDE_DIR}
-${Pangolin_INCLUDE_DIRS}
 )
 
 ############################################################
@@ -101,7 +98,6 @@ src/Viewer.cc
 
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
-${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so

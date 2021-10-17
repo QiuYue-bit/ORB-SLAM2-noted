@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ORB_SLAM2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\libsStore\;CMake Files\..\..\..\libsStore\OPENCV\;CMake Files\..\..\..\libsStore\OPENCV\4.2.0\;CMake Files\..\..\..\libsStore\OPENCV\4.2.0\opencv-4.2.0\;CMake Files\..\..\..\libsStore\OPENCV\4.2.0\opencv-4.2.0\build\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\Pangolin\;CMake Files\cmake_modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="stereo_euroc">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Stereo/stereo_euroc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 stereo_euroc"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="stereo_euroc/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Stereo/stereo_euroc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 stereo_euroc/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="stereo_kitti">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Stereo/stereo_kitti" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 stereo_kitti"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="stereo_kitti/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Stereo/stereo_kitti" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 stereo_kitti/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="myslam">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/myvideo/myslam" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 myslam"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="myslam/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/myvideo/myslam" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 myslam/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rgbd_tum">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/RGB-D/rgbd_tum" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 rgbd_tum"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rgbd_tum/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/RGB-D/rgbd_tum" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 rgbd_tum/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ORB_SLAM2">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/lib/libORB_SLAM2.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 ORB_SLAM2"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ORB_SLAM2/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/lib/libORB_SLAM2.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 ORB_SLAM2/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_tum">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_tum" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_tum"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_tum/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_tum" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_tum/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_kitti">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_kitti" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_kitti"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_kitti/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_kitti" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_kitti/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_euroc">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_euroc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_euroc"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_euroc/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_euroc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_euroc/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="myvideo">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/myvideo/myvideo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 myvideo"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="myvideo/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/myvideo/myvideo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 myvideo/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_d435i">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors/mono_d435i" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_d435i"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mono_d435i/fast">
+				<Option output="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors/mono_d435i" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCOMPILEDWITHC11"/>
+					<Add option="-D_LINUX_"/>
+					<Add option="-DHAVE_EIGEN"/>
+					<Add option="-DHAVE_GLEW"/>
+					<Add option="-DPANGO_DEFAULT_WIN_URI=&quot;x11&quot;"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments"/>
+					<Add directory="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/core/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/flann/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgproc/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ml/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/photo/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/dnn/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/features2d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/gapi/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/imgcodecs/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/videoio/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/calib3d/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/highgui/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/objdetect/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/stitching/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/ts/include"/>
+					<Add directory="/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/modules/video/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 mono_d435i/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_euroc.cc">
+			<Option target="mono_euroc"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_kitti.cc">
+			<Option target="mono_kitti"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Monocular/mono_tum.cc">
+			<Option target="mono_tum"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/RGB-D/rgbd_tum.cc">
+			<Option target="rgbd_tum"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Sensors/mono_d435i.cc">
+			<Option target="mono_d435i"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Stereo/stereo_euroc.cc">
+			<Option target="stereo_euroc"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/Stereo/stereo_kitti.cc">
+			<Option target="stereo_kitti"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/myvideo/myslam.cpp">
+			<Option target="myslam"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Examples/myvideo/myvideo.cpp">
+			<Option target="myvideo"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Converter.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Frame.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/FrameDrawer.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Initializer.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/KeyFrame.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/KeyFrameDatabase.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/LocalMapping.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/LoopClosing.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Map.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/MapDrawer.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/MapPoint.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/ORBextractor.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/ORBmatcher.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Optimizer.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/PnPsolver.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Sim3Solver.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/System.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Tracking.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/src/Viewer.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../libsStore/OPENCV/4.2.0/opencv-4.2.0/build/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libsStore\OPENCV\4.2.0\opencv-4.2.0\build\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../libsStore/OPENCV/4.2.0/opencv-4.2.0/build/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libsStore\OPENCV\4.2.0\opencv-4.2.0\build\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../libsStore/OPENCV/4.2.0/opencv-4.2.0/build/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\libsStore\OPENCV\4.2.0\opencv-4.2.0\build\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../../../../usr/local/lib/cmake/Pangolin/PangolinConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../../../../usr/local/lib/cmake/Pangolin/PangolinConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../../../../usr/local/lib/cmake/Pangolin/PangolinTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/../../../../../../usr/local/lib/cmake/Pangolin/PangolinTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/cmake_modules/FindEigen3.cmake">
+			<Option virtualFolder="CMake Files\cmake_modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
