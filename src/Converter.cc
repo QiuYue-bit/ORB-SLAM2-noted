@@ -39,6 +39,12 @@ namespace ORB_SLAM2
 //将描述子转换为描述子向量，其实本质上是cv:Mat->std:vector
 std::vector<cv::Mat> Converter::toDescriptorVector(const cv::Mat &Descriptors)
 {
+
+// 先前制作的描述子
+//  _descriptors.create(nkeypoints,		//矩阵的行数，对应为特征点的总个数
+// 				32, 			//矩阵的列数，对应为使用32*8=256位描述子
+// 				CV_8U);			//矩阵元素的格式
+
 	//存储转换结果的向量
     std::vector<cv::Mat> vDesc;
 	//创建保留空间
@@ -64,7 +70,6 @@ g2o::SE3Quat Converter::toSE3Quat(const cv::Mat &cvT)
 
 	//然后将平移向量提取出来
     Eigen::Matrix<double,3,1> t(cvT.at<float>(0,3), cvT.at<float>(1,3), cvT.at<float>(2,3));
-
 	//构造g2o::SE3Quat类型并返回
     return g2o::SE3Quat(R,t);
 }

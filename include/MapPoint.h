@@ -309,7 +309,7 @@ protected:
     MapPoint* mpReplaced;
 
     /// Scale invariance distances
-    //? 
+    //? 啥玩意？
     float mfMinDistance;
     float mfMaxDistance;
 

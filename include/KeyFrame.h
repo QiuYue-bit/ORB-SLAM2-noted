@@ -392,7 +392,7 @@ public:
 protected:
 
     // SE3 Pose and camera center
-    cv::Mat Tcw;    // 当前相机的位姿，世界坐标系到相机坐标系
+    cv::Mat Tcw;    // 当前相机的位姿，世界坐标系到相机坐标系,Tcw指的是：当前帧与世界坐标系之间的变换
     cv::Mat Twc;    // 当前相机位姿的逆
     cv::Mat Ow;     // 相机光心(左目)在世界坐标系下的坐标,这里和普通帧中的定义是一样的
 

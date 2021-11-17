@@ -447,6 +447,7 @@ void Tracking::Track()
 
     // Get Map Mutex -> Map cannot be changed
     // 地图更新时加锁。保证地图不会发生变化
+
     // 疑问:这样子会不会影响地图的实时更新?
     // 回答：主要耗时在构造帧中特征点的提取和匹配部分,在那个时候地图是没有被上锁的,有足够的时间更新地图
     unique_lock<mutex> lock(mpMap->mMutexMapUpdate);
@@ -922,6 +923,8 @@ void Tracking::MonocularInitialization()
 
         // Find correspondences
         // Step 3 在mInitialFrame与mCurrentFrame中找匹配的特征点对
+
+        // 这个其实就是防止特征点太相似了，在那一块图像区域中不够Unique,用来估计运动可能带来误差无法控制
         ORBmatcher matcher(
             0.9,        //最佳的和次佳特征点评分的比值阈值，这里是比较宽松的，跟踪时一般是0.7
             true);      //检查特征点的方向
@@ -939,8 +942,10 @@ void Tracking::MonocularInitialization()
         // Step 4 验证匹配结果，如果初始化的两帧之间的匹配点太少，重新初始化
         if(nmatches<100)
         {
+            // delete 后，再新建一个 
             delete mpInitializer;
             mpInitializer = static_cast<Initializer*>(NULL);
+
             return;
         }
 
@@ -1065,7 +1070,7 @@ void Tracking::CreateInitialMapMonocular()
 
     // Set median depth to 1
     // Step 5 取场景的中值深度，用于尺度归一化 
-    // 为什么是 pKFini 而不是 pKCur ? 答：都可以的，内部做了位姿变换了
+    // ? 为什么是 pKFini 而不是 pKCur  答：都可以的，内部做了位姿变换了
     float medianDepth = pKFini->ComputeSceneMedianDepth(2);
     float invMedianDepth = 1.0f/medianDepth;
     
@@ -1161,7 +1166,7 @@ void Tracking::CheckReplacedInLastFrame()
  * @return 如果匹配数超10，返回true
  * 
  */
-bool Tracking::TrackReferenceKeyFrame()
+bool Tracking:: TrackReferenceKeyFrame()
 {
     // Compute Bag of Words vector
     // Step 1：将当前帧的描述子转化为BoW向量
@@ -1191,7 +1196,7 @@ bool Tracking::TrackReferenceKeyFrame()
 
     // Discard outliers
     // Step 5：剔除优化后的匹配点中的外点
-    //之所以在优化之后才剔除外点，是因为在优化的过程中就有了对这些外点的标记
+    // ?之所以在优化之后才剔除外点，是因为在优化的过程中才对这些点进行标记
     int nmatchesMap = 0;
     for(int i =0; i<mCurrentFrame.N; i++)
     {
@@ -1308,6 +1313,7 @@ void Tracking::UpdateLastFrame()
         else
         {
             // 因为从近到远排序，记录其中不需要创建地图点的个数
+            // ? 两边都++都啥意思。。搞不懂
             nPoints++;
         }
 
@@ -1462,8 +1468,9 @@ bool Tracking::TrackLocalMap()
                     // 记录当前帧跟踪到的地图点数目，用于统计跟踪效果
                     mnMatchesInliers++;
             }
+
             // 如果这个地图点是外点,并且当前相机输入还是双目的时候,就删除这个点
-            // ?单目就不管吗
+            // ?单目就不管吗 bug
             else if(mSensor==System::STEREO)  
                 mCurrentFrame.mvpMapPoints[i] = static_cast<MapPoint*>(NULL);
 
@@ -1477,7 +1484,7 @@ bool Tracking::TrackLocalMap()
     if(mCurrentFrame.mnId<mnLastRelocFrameId+mMaxFrames && mnMatchesInliers<50)
         return false;
 
-    //如果是正常的状态话只要跟踪的地图点大于30个就认为成功了
+    // 如果是正常的状态话只要跟踪的地图点大于30个就认为成功了
     if(mnMatchesInliers<30)
         return false;
     else
@@ -1506,6 +1513,7 @@ bool Tracking::NeedNewKeyFrame()
     // Step 2：如果局部地图线程被闭环检测使用，则不插入关键帧
     if(mpLocalMapper->isStopped() || mpLocalMapper->stopRequested())
         return false;
+
     // 获取当前地图中的关键帧数目
     const int nKFs = mpMap->KeyFramesInMap();
 
@@ -1525,7 +1533,9 @@ bool Tracking::NeedNewKeyFrame()
     int nMinObs = 3;
     if(nKFs<=2)
         nMinObs=2;
+
     // 参考关键帧地图点中观测的数目>= nMinObs的地图点数目
+    // ?啥意思
     int nRefMatches = mpReferenceKF->TrackedMapPoints(nMinObs);
 
     // Local Mapping accept keyframes?
@@ -1570,6 +1580,7 @@ bool Tracking::NeedNewKeyFrame()
 
     // Condition 1a: More than "MaxFrames" have passed from last keyframe insertion
     // Step 7.2：很长时间没有插入关键帧，可以插入
+    // 默认是1秒的帧也就是30帧
     const bool c1a = mCurrentFrame.mnId>=mnLastKeyFrameId+mMaxFrames;
 
     // Condition 1b: More than "MinFrames" have passed and Local Mapping is idle
@@ -1608,7 +1619,7 @@ bool Tracking::NeedNewKeyFrame()
                     //队列中的关键帧数目不是很多,可以插入
                     return true;
                 else
-                    //队列中缓冲的关键帧数目太多,暂时不能插入
+                    //队列中缓冲的关键帧数目太多,暂时不能插入，怕处理不过来
                     return false;
             }
             else
@@ -1776,6 +1787,7 @@ void Tracking::SearchLocalPoints()
         // 已经被当前帧观测到的地图点肯定在视野范围内，跳过
         if(pMP->mnLastFrameSeen == mCurrentFrame.mnId)
             continue;
+            
         // 跳过坏点
         if(pMP->isBad())
             continue;
@@ -1791,7 +1803,7 @@ void Tracking::SearchLocalPoints()
         }
     }
 
-    // Step 3：如果需要进行投影匹配的点的数目大于0，就进行投影匹配，增加更多的匹配关系
+    // Step 3：如果存在当前帧视野范围内的局部地图点，则对其进行投影匹配，增加更多匹配关系。
     if(nToMatch>0)
     {
         ORBmatcher matcher(0.8);
@@ -1823,8 +1835,9 @@ void Tracking::UpdateLocalMap()
     mpMap->SetReferenceMapPoints(mvpLocalMapPoints);
 
     // Update
-    // 用共视图来更新局部关键帧和局部地图点
+    // 用共视图来更新局部关键帧
     UpdateLocalKeyFrames();
+    // 用共视图来更新局部地图点
     UpdateLocalPoints();
 }
 
@@ -1849,6 +1862,7 @@ void Tracking::UpdateLocalPoints()
             if(!pMP)
                 continue;
             // 用该地图点的成员变量mnTrackReferenceForFrame 记录当前帧的id
+
             // 表示它已经是当前帧的局部地图点了，可以防止重复添加局部地图点
             if(pMP->mnTrackReferenceForFrame==mCurrentFrame.mnId)
                 continue;
@@ -1875,7 +1889,9 @@ void Tracking::UpdateLocalKeyFrames()
 {
     // Each map point vote for the keyframes in which it has been observed
     // Step 1：遍历当前帧的地图点，记录所有能观测到当前帧地图点的关键帧
+    // 第二个参数int 代表 这个关键帧看到了多少个到当前帧的地图点
     map<KeyFrame*,int> keyframeCounter;
+
     for(int i=0; i<mCurrentFrame.N; i++)
     {
         if(mCurrentFrame.mvpMapPoints[i])
@@ -1945,7 +1961,8 @@ void Tracking::UpdateLocalKeyFrames()
     for(vector<KeyFrame*>::const_iterator itKF=mvpLocalKeyFrames.begin(), itEndKF=mvpLocalKeyFrames.end(); itKF!=itEndKF; itKF++)
     {
         // Limit the number of keyframes
-        // 处理的局部关键帧不超过80帧
+        // 处理的局部关键帧不超过80帧,满足局部关键帧的数量要求就可以退出了。
+        // 防止局部关键帧过多处理不过来。
         if(mvpLocalKeyFrames.size()>80)
             break;
 
@@ -1966,6 +1983,9 @@ void Tracking::UpdateLocalKeyFrames()
                     mvpLocalKeyFrames.push_back(pNeighKF);
                     pNeighKF->mnTrackReferenceForFrame=mCurrentFrame.mnId;
                     //? 找到一个就直接跳出for循环？
+                    // 找到最高的共视关系的关键帧就Ok，其实去掉break也可以，这关键帧能更多一些
+                    // 我觉得是让局部关键帧均匀一些，因为局部关键帧有数量要求10，如果取一级共视关键帧太多了80
+                    // 那肯定不均匀，就会导致后续的局部地图点不够均匀
                     break;
                 }
             }
@@ -2044,6 +2064,7 @@ bool Tracking::Relocalization()
     // We perform first an ORB matching with each candidate
     // If enough matches are found we setup a PnP solver
     ORBmatcher matcher(0.75,true);
+    
     //每个关键帧的解算器
     vector<PnPsolver*> vpPnPsolvers;
     vpPnPsolvers.resize(nKFs);
@@ -2158,6 +2179,7 @@ bool Tracking::Relocalization()
                 int nGood = Optimizer::PoseOptimization(&mCurrentFrame);
 
                 // 如果优化之后的内点数目不多，跳过了当前候选关键帧,但是却没有放弃当前帧的重定位
+                // 用其他候选关键帧继续匹配
                 if(nGood<10)
                     continue;
 
@@ -2171,7 +2193,7 @@ bool Tracking::Relocalization()
                 // 前面的匹配关系是用词袋匹配过程得到的
                 if(nGood<50)
                 {
-                    // 通过投影的方式将关键帧中未匹配的地图点投影到当前帧中, 生成新的匹配
+                    // 通过投影的方式将关键帧中未匹配的地图点投影到当前帧中, 尝试生成新的匹配
                     int nadditional = matcher2.SearchByProjection(
                         mCurrentFrame,          //当前帧
                         vpCandidateKFs[i],      //关键帧
@@ -2197,6 +2219,8 @@ bool Tracking::Relocalization()
                             for(int ip =0; ip<mCurrentFrame.N; ip++)
                                 if(mCurrentFrame.mvpMapPoints[ip])
                                     sFound.insert(mCurrentFrame.mvpMapPoints[ip]);
+
+
                             nadditional =matcher2.SearchByProjection(
                                 mCurrentFrame,          //当前帧
                                 vpCandidateKFs[i],      //候选的关键帧

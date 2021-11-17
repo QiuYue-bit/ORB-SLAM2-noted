@@ -132,6 +132,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
         {
             // 提取所有包含该word的KeyFrame
             list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];
+
             // 然后对这些关键帧展开遍历
             for(list<KeyFrame*>::iterator lit=lKFs.begin(), lend= lKFs.end(); lit!=lend; lit++)
             {
@@ -302,6 +303,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
             }
         }
     }
+
     // 如果和当前帧具有公共单词的关键帧数目为0，无法进行重定位，返回空
     if(lKFsSharingWords.empty())
         return vector<KeyFrame*>();
@@ -360,13 +362,17 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
         float accScore = bestScore;  
         // 该组最高分数对应的关键帧
         KeyFrame* pBestKF = pKFi;   
+
         // 遍历共视关键帧，累计得分 
         for(vector<KeyFrame*>::iterator vit=vpNeighs.begin(), vend=vpNeighs.end(); vit!=vend; vit++)
         {
             KeyFrame* pKF2 = *vit;
+
+            // 这一帧和当前帧不一样才行- - 一样那没法玩了
             if(pKF2->mnRelocQuery!=F->mnId)
                 continue;
-            // 只有pKF2也在重定位候选帧中，才能贡献分数
+
+            // 只有pKF2也在重定位候选帧中（就是之前共词袋的那儿给的分），才能贡献分数
             accScore+=pKF2->mRelocScore;
 
             // 统计得到组里分数最高的KeyFrame
@@ -385,10 +391,12 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
             bestAccScore=accScore; 
     }
 
-    // Return all those keyframes with a score higher than 0.75*bestScore
-    // Step 5：得到所有组中总得分大于阈值2的，组内得分最高的关键帧，作为候选关键帧组
     //阈值2：最高得分的0.75倍
     float minScoreToRetain = 0.75f*bestAccScore; 
+
+
+    // Return all those keyframes with a score higher than 0.75*bestScore
+    // Step 5：得到所有组中总得分大于阈值2的，组内得分最高的关键帧，作为候选关键帧组
     set<KeyFrame*> spAlreadyAddedKF;
     vector<KeyFrame*> vpRelocCandidates;
     vpRelocCandidates.reserve(lAccScoreAndMatch.size());

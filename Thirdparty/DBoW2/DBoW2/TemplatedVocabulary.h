@@ -1123,7 +1123,7 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
 
 // --------------------------------------------------------------------------
 /**
- * @brief 将一幅图像所有的特征点转化为BowVector和FeatureVector
+ * @brief  
  * 
  * @tparam TDescriptor 
  * @tparam F 
@@ -1137,9 +1137,13 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
   const std::vector<TDescriptor>& features,
   BowVector &v, FeatureVector &fv, int levelsup) const
 {
+
+
+  // 先清空保证安全
   v.clear();
   fv.clear();
   
+
   if(empty()) // safe for subclasses
   {
     return;
@@ -1150,8 +1154,10 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
   LNorm norm;
   bool must = m_scoring_object->mustNormalize(norm);
   
+  
   typename vector<TDescriptor>::const_iterator fit;
   
+  // 使用TF_IDF
   if(m_weighting == TF || m_weighting == TF_IDF)
   {
     unsigned int i_feature = 0;
@@ -1162,7 +1168,8 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
       NodeId nid;       // FeatureVector 里的NodeId，用于加速搜索
       WordValue w;      // 叶子节点Word对应的权重
 
-      //  将当前描述子转化为Word id， Word weight，节点所属的父节点id（这里的父节点不是叶子的上一层，它距离叶子深度为levelsup）
+      //  将当前描述子转化为Word id， Word weight，节点所属的父节点id
+      // （这里的父节点不是叶子的上一层，它距离叶子深度为levelsup）
       // w is the idf value if TF_IDF, 1 if TF 
       transform(*fit, id, w, &nid, levelsup);
       
@@ -1226,8 +1233,8 @@ void TemplatedVocabulary<TDescriptor,F>::transform
 
 // --------------------------------------------------------------------------
 /**
- * @brief 将描述子转化为Word id， Word weight，节点所属的父节点id（这里的父节点不是叶子的上一层，它距离叶子深度为levelsup）
- * 
+ * @brief 将描述子转化为Word id， Word weight，节点所属的父节点id
+ * （这里的父节点不是叶子的上一层，它距离叶子深度为levelsup）
  * @tparam TDescriptor            
  * @tparam F 
  * @param[in] feature                 特征描述子
@@ -1247,8 +1254,10 @@ void TemplatedVocabulary<TDescriptor,F>::transform(const TDescriptor &feature,
   // level at which the node must be stored in nid, if given
   // m_L: depth levels, m_L = 6 in ORB-SLAM2
   // nid_level 当前特征点转化为的Word 所属的 node id，方便索引
+  //
   const int nid_level = m_L - levelsup;
-  if(nid_level <= 0 && nid != NULL) *nid = 0; // root
+  if(nid_level <= 0 && nid != NULL) 
+    *nid = 0; // root
 
   NodeId final_id = 0; // root
   int current_level = 0;
