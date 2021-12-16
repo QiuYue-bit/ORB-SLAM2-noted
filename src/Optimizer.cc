@@ -919,6 +919,9 @@ void Optimizer::LocalBundleAdjustment(KeyFrame *pKF, bool* pbStopFlag, Map* pMap
             if(e->chi2()>5.991 || !e->isDepthPositive())
             {
                 // 不优化
+                // 注意这儿仅仅是对这一次迭代不优化，下一次迭代的时候
+                // 由于调整了位姿，可能就不是外点了，依然会进行优化
+                // TODO g2o视频06讲里看到的，还需要进一步确认
                 e->setLevel(1);
             }
             // 第二阶段优化的时候就属于精求解了,所以就不使用核函数
@@ -945,7 +948,7 @@ void Optimizer::LocalBundleAdjustment(KeyFrame *pKF, bool* pbStopFlag, Map* pMap
         // Optimize again without the outliers
         // Step 11：排除误差较大的outlier后再次优化 -- 第二阶段优化
         optimizer.initializeOptimization(0);
-        optimizer.optimize(10);
+        optimizer.optimize(10); //TODO edge 的更新？
 
     }
 

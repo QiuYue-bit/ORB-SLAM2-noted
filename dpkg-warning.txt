@@ -1,0 +1,31 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  gstreamer1.0-gtk3 libabw-0.1-1 libcdr-0.1-1 libclucene-contribs1v5
+  libclucene-core1v5 libcmis-0.5-5v5 libe-book-0.1-1 libeot0 libepubgen-0.1-1
+  libetonyek-0.1-1 libexttextcat-2.0-0 libexttextcat-data libfreehand-0.1-1
+  libjuh-java libjurt-java liblangtag-common liblangtag1 libllvm11 libmhash2
+  libmspub-0.1-1 libmwaw-0.3-3 libmythes-1.2-0 libneon27-gnutls
+  libodfgen-0.1-1 liborcus-0.15-0 libpagemaker-0.0-0 libqglviewer-headers
+  libraptor2-0 librasqal3 librdf0 libreoffice-style-colibre
+  libreoffice-style-elementary librevenge-0.0-0 libridl-java libuno-cppu3
+  libuno-cppuhelpergcc3-3 libuno-purpenvhelpergcc3-3 libuno-sal3
+  libuno-salhelpergcc3-3 libunoloader-java libvisio-0.1-1 libwpd-0.10-10
+  libwpg-0.3-3 libwps-0.4-4 libxmlsec1 libxmlsec1-nss libyajl2 lp-solve
+  uno-libs-private ure
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  sl
+0 upgraded, 1 newly installed, 0 to remove and 15 not upgraded.
+Need to get 12.7 kB of archives.
+After this operation, 60.4 kB of additional disk space will be used.
+Get:1 http://cn.archive.ubuntu.com/ubuntu focal/universe amd64 sl amd64 5.02-1 [12.7 kB]
+Fetched 12.7 kB in 1s (12.6 kB/s)
+Selecting previously unselected package sl.
+(Reading database ... dpkg: warning: files list file for package 'libeigen3-dev' missing; assuming package has no files currently installed
+(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 377355 files and directories currently installed.)
+Preparing to unpack .../archives/sl_5.02-1_amd64.deb ...
+Unpacking sl (5.02-1) ...
+Setting up sl (5.02-1) ...
+Processing triggers for man-db (2.9.1-1) ...
