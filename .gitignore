@@ -22,7 +22,15 @@ cmake-build-debug/
 build/
 doxygen/
 doc/
+
 *~
 lib/
 */html/
 
+
+
+
+#文件夹
+.idea
+.vscode
+*.mp4
