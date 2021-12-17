@@ -1,11 +1,5 @@
-###
- # @Author: Divenire
- # @Date: 2021-08-23 22:12:59
- # @LastEditTime: 2021-09-15 20:34:56
- # @LastEditors: Please set LastEditors
- # @Description: run dataset
- # @FilePath: /undefined/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/run_stereo_dataset.sh
-### 
+cd ..
+
 
 # EuRoC Dataset v1 and v2
 # ./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml \
@@ -23,4 +17,4 @@
 # KITTI 
 ./Examples/Stereo/stereo_kitti ./Vocabulary/ORBvoc.txt \
 ./Examples/Stereo/KITTI00-02.yaml \
-~/Divenire_ws/dataset/KITTI/dataset/sequences/00
+/home/divenire/0_MyDisk/dataset/KITTI/dataset/sequences/00

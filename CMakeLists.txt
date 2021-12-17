@@ -42,23 +42,20 @@ message(${CMAKE_MODULE_PATH})
 # 寻找库并包含路径
 ############################################################
 # OpenCV
-set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build")
-#set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/3.4.12/opencv-3.4.12/build")
-find_package(OpenCV  REQUIRED)
-
-# if(NOT OpenCV_FOUND)
-#    find_package(OpenCV 2.4.3 QUIET)
-#    if(NOT OpenCV_FOUND)
-#       message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-#    endif()
-# endif()
+find_package(OpenCV REQUIRED)
+if(NOT OpenCV_FOUND)
+    find_package(OpenCV 2.4.3 QUIET)
+    if(NOT OpenCV_FOUND)
+        message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
+    endif()
+endif()
 
 #Eigen
-# include_directories(/home/divenire/Divenire_ws/libsStore/EIGEN/eigen-3.2.1/eigen-3.2.1)
-include_directories(/home/divenire/Divenire_ws/libsStore/EIGEN/eigen-3.3.8)
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
+
 
 #PANGOLIN
-#set(Pangolin_DIR "/home/divenire/myDisk/WorkSpace/LIB_store/Pangolin/build/src")
 find_package(Pangolin REQUIRED)
 include_directories(${Pangolin_INCLUDE_DIRS})
 
@@ -109,6 +106,7 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 ## 二进制文件输出路径
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/RGB-D)
 
+
 add_executable(rgbd_tum
 Examples/RGB-D/rgbd_tum.cc)
 target_link_libraries(rgbd_tum ${PROJECT_NAME})
@@ -147,6 +145,6 @@ add_executable(myslam Examples/myvideo/myslam.cpp)
 target_link_libraries(myslam ${PROJECT_NAME})
 
 # D435i
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Sensors)
-add_executable(mono_d435i Examples/Sensors/mono_d435i.cc)
-target_link_libraries(mono_d435i ${PROJECT_NAME})
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Sensors)
+# add_executable(mono_d435i Examples/Sensors/mono_d435i.cc)
+# target_link_libraries(mono_d435i ${PROJECT_NAME})

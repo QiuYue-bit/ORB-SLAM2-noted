@@ -6,7 +6,6 @@
 
 // 需要opencv
 #include <opencv2/opencv.hpp>
-#include <opencv2/imgcodecs/legacy/constants_c.h>
 
 // ORB-SLAM的系统接口
 #include "System.h"

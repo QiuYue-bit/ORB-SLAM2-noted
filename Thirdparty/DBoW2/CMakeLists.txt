@@ -25,7 +25,7 @@ set(SRCS_DUTILS
   DUtils/Timestamp.cpp)
 
 #set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/3.4.12/opencv-3.4.12/build")
-set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build")
+#set(OpenCV_DIR "/home/divenire/Divenire_ws/libsStore/OPENCV/4.2.0/opencv-4.2.0/build")
 find_package(OpenCV  QUIET)
 if(NOT OpenCV_FOUND)
    find_package(OpenCV 2.4.3 QUIET)
