@@ -19,7 +19,7 @@ Camera.width: 1280
 Camera.height: 720
 
 # Camera frames per second 
-Camera.fps: 15
+Camera.fps: 30
 
 # IR projector baseline times fx (aprox.)
 #  bf = baseline (in meters) * fx, D435i的 baseline = 50 mm 

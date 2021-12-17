@@ -1,0 +1,21 @@
+<!-- D435i ORBSLAM2 单目模式 launch文件 -->
+
+<launch>
+    <!--定义全局参数-->
+    <arg name="image" default="/camera/color/image_raw"/>
+    <arg name="path_to_vacabulary" default="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/Vocabulary/ORBvoc.txt"/>
+    <arg name="path_to_settings" default="/home/divenire/Divenire_ws/workingProgram/ORB_SLAM/ORB_SLAM2_detailed_comments/config/D435i_Rgbd.yaml"/>
+
+    <!--启动摄像头节点(realsense)-->
+    <include file="$(find realsense2_camera)/launch/m_rgbd.launch"/>
+
+    <!--启动ORB-SLAM2 RGBD-->
+    <!-- 包名:ORB_SLAM2 节点名称：D435i_Rgbd 可执行文件:RGBD args:传入可执行文件的参数 -->
+    <node name ="D435i_MONO" pkg="ORB_SLAM2" type="Mono" 
+        args="$(arg path_to_vacabulary) $(arg path_to_settings) " respawn="true" output="screen">
+
+        <!-- 程序中源话题重映射 -->
+        <remap from="/camera/image_raw" to="$(arg image)"/>
+    </node>
+    
+</launch>

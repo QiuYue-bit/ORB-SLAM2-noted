@@ -1,3 +1,43 @@
+运行环境:
+
+- Ubuntu18.04
+
+- Eigen 3.3.4
+
+- Pangolin 0.6
+
+- OpenCV 3.2.0
+
+- Thirdparty/g2o
+
+  - 这个编译的时候会报很多错误，但是问题不大。
+
+- Thirdparty/DBoW2
+
+- ROS-Molodic
+
+  - 先编译裸机版本，通过后在在`~/.zshrc`下添加ORB_SLAM2的工作路径:
+
+  - ```shell
+    export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:[your path]/ORB_SLAM2_detailed_comments/Examples/ROS
+    ```
+
+  - 编译 ./build_ros.sh
+
+运行:
+
+` roslaunch ORB_SLAM2 D435i_Stereo.launch`
+
+
+
+
+
+
+
+____
+
+
+
 # ORB-SLAM2 超详细注释
 
 -by 计算机视觉life 公众号旗下开源学习小组：SLAM研习社
