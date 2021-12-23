@@ -21,6 +21,12 @@ if(CMAKE_BUILD_TYPE MATCHES Release)
    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
 endif()
+
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+   MESSAGE("Debug 模式")
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall   -march=native")
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -march=native")
+endif()
 ########################################s####################
 # Check C++14
 ############################################################

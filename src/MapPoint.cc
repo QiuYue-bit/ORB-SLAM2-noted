@@ -537,6 +537,7 @@ namespace ORB_SLAM2
             mfMaxDistance = dist * levelScaleFactor;                             // 观测到该点的距离上限
             mfMinDistance = mfMaxDistance / pRefKF->mvScaleFactors[nLevels - 1]; // 观测到该点的距离下限
             mNormalVector = normal / n;                                          // 获得地图点平均的观测方向(归一化)
+            // cout<<"level="<<level<<"dist"<<dist<<"mfMaxDistance"<<mfMaxDistance<<"mfMinDistance"<<mfMinDistance<<endl;
         }
     }
 
