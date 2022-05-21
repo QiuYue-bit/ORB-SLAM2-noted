@@ -1,23 +1,3 @@
-/**
-* This file is part of ORB-SLAM2.
-*
-* Copyright (C) 2014-2016 Raúl Mur-Artal <raulmur at unizar dot es> (University of Zaragoza)
-* For more information see <https://github.com/raulmur/ORB_SLAM2>
-*
-* ORB-SLAM2 is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* ORB-SLAM2 is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with ORB-SLAM2. If not, see <http://www.gnu.org/licenses/>.
-*/
-
 //主进程的实现文件
 
 //包含了一些自建库
@@ -55,7 +35,6 @@ namespace ORB_SLAM2
 
         // 输出当前传感器类型
         cout << "Input sensor was set to: ";
-
         if (mSensor == MONOCULAR)
             cout << "Monocular" << endl;
         else if (mSensor == STEREO)
@@ -63,7 +42,7 @@ namespace ORB_SLAM2
         else if (mSensor == RGBD)
             cout << "RGB-D" << endl;
 
-        //Check settings file
+        // Opencv 拿到配置文件的句柄，用于读取信息
         cv::FileStorage fsSettings(strSettingsFile.c_str(), //将配置文件名转换成为字符串
                                    cv::FileStorage::READ);  //只读
         //如果打开失败，就输出调试信息
@@ -74,10 +53,11 @@ namespace ORB_SLAM2
             exit(-1);
         }
 
-        //Load ORB Vocabulary
+        // * Step 1 加载字典
+
+        // Load ORB Vocabulary
         cout << endl
              << "Loading ORB Vocabulary. This could take a while..." << endl;
-
         //建立一个新的ORB字典
         mpVocabulary = new ORBVocabulary();
         //获取字典加载状态
@@ -90,23 +70,25 @@ namespace ORB_SLAM2
             //然后退出
             exit(-1);
         }
-        //否则则说明加载成功
-        cout << "Vocabulary loaded!" << endl
-             << endl;
+        else
+        {
+            cout << "Vocabulary loaded!" << endl
+                 << endl;
+        }
 
-        //Create KeyFrame Database
+        //* Step 2 初始化各个线程
+
+        // Create KeyFrame Database
         mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
-
-        //Create the Map
+        // Create the Map
         mpMap = new Map();
-
-        //Create Drawers. These are used by the Viewer
+        // Create Drawers. These are used by the Viewer
         //这里的帧绘制器和地图绘制器将会被可视化的Viewer所使用
         mpFrameDrawer = new FrameDrawer(mpMap);
         mpMapDrawer = new MapDrawer(mpMap, strSettingsFile);
 
         //在本主进程中初始化追踪线程
-        //Initialize the Tracking thread
+        // Initialize the Tracking thread
         //(it will live in the main thread of execution, the one that called this constructor)
         mpTracker = new Tracking(this,               //现在还不是很明白为什么这里还需要一个this指针  TODO
                                  mpVocabulary,       //字典
@@ -118,23 +100,23 @@ namespace ORB_SLAM2
                                  mSensor);           //传感器类型iomanip
 
         //初始化局部建图线程并运行
-        //Initialize the Local Mapping thread and launch
+        // Initialize the Local Mapping thread and launch
         mpLocalMapper = new LocalMapping(mpMap,                 //指定使iomanip
                                          mSensor == MONOCULAR); // TODO 为什么这个要设置成为MONOCULAR？？？
         //运行这个局部建图线程
         mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run, //这个线程会调用的函数
                                      mpLocalMapper);                //这个调用函数的参数
 
-        //Initialize the Loop Closing thread and launchiomanip
+        // Initialize the Loop Closing thread and launchiomanip
         mpLoopCloser = new LoopClosing(mpMap,                 //地图
                                        mpKeyFrameDatabase,    //关键帧数据库
-                                       mpVocabulary,          //ORB字典
+                                       mpVocabulary,          // ORB字典
                                        mSensor != MONOCULAR); //当前的传感器是否是单目
         //创建回环检测线程
         mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, //线程的主函数
                                     mpLoopCloser);                //该函数的参数
 
-        //Initialize the Viewer thread and launch
+        // Initialize the Viewer thread and launch
         if (bUseViewer)
         {
             //如果指定了，程序的运行过程中需要运行可视化部分
@@ -150,8 +132,9 @@ namespace ORB_SLAM2
             mpTracker->SetViewer(mpViewer);
         }
 
-        //Set pointers between threads
-        //设置进程间的指针
+        // * Step 设置进程间的指针，用于通信
+
+        // Set pointers between threads
         mpTracker->SetLocalMapper(mpLocalMapper);
         mpTracker->SetLoopClosing(mpLoopCloser);
 
@@ -528,7 +511,7 @@ namespace ORB_SLAM2
         //本来这里需要进行原点校正，但是实际上没有做
         // Transform all keyframes so that the first keyframe is at the origin.
         // After a loop closure the first keyframe might not be at the origin.
-        //cv::Mat Two = vpKFs[0]->GetPoseInverse();
+        // cv::Mat Two = vpKFs[0]->GetPoseInverse();
 
         //文件写入的准备操作
         ofstream f;
@@ -642,4 +625,4 @@ namespace ORB_SLAM2
         return mTrackedKeyPointsUn;
     }
 
-} //namespace ORB_SLAM
+} // namespace ORB_SLAM

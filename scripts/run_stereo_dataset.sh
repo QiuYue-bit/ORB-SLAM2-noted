@@ -1,6 +1,3 @@
-cd ..
-
-
 # EuRoC Dataset v1 and v2
 # ./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml \
 # ~/Divenire_ws/dataset/EuRoC/V1_02_medium/mav0/cam0/data \
@@ -15,6 +12,4 @@ cd ..
 
 
 # KITTI 
-./Examples/Stereo/stereo_kitti ./Vocabulary/ORBvoc.txt \
-./Examples/Stereo/KITTI00-02.yaml \
-/home/divenire/0_MyDisk/dataset/KITTI/dataset/sequences/00
+../bin/Examples/Stereo/stereo_kitti ../Vocabulary/ORBvoc.txt ../Examples/Stereo/KITTI00-02.yaml /media/divenire/C86BCECE98B60C8B/0_myWorkSpace/Datasets/KITTI/odometry/00

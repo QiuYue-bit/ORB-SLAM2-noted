@@ -434,7 +434,7 @@ namespace ORB_SLAM2
         const vector<cv::Point2f> &vP2) //归一化后的点, in current frame
     {
         // 基本原理：见附件推导过程：
-        https://zhuanlan.zhihu.com/p/102692597
+        // https://zhuanlan.zhihu.com/p/102692597
         // |x'|     | h1 h2 h3 ||x|
         // |y'| = a | h4 h5 h6 ||y|  简写: x' = a H x, a为一个尺度因子
         // |1 |     | h7 h8 h9 ||1|

@@ -75,6 +75,7 @@ public:
            const eSensor sensor,                //指定所使用的传感器类型
            const bool bUseViewer = true);       //指定是否使用可视化界面 TODO 
 
+	
     //下面是针对三种不同类型的传感器所设计的三种运动追踪接口。彩色图像为CV_8UC3类型，并且都将会被转换成为灰度图像。
     //追踪接口返回估计的相机位姿，如果追踪失败则返回NULL
 

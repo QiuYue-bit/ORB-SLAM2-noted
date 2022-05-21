@@ -18,20 +18,24 @@ MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 # -march=native, which automatically detects the features your CPU supports and sets the options appropriately.
 if(CMAKE_BUILD_TYPE MATCHES Release)
    MESSAGE("开启编译器优化")
-   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3  ")
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3")
 endif()
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
    MESSAGE("Debug 模式")
-   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall   -march=native")
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -march=native")
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall ")
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall  ")
 endif()
 ########################################s####################
 # Check C++14
 ############################################################
 # 设置指定的C++编译器版本是必须的，如果不设置，或者为OFF，则指定版本不可用时，会使用上一版本。
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
+# 输出Understand的文件
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 指定为C++14 版本
 set(CMAKE_CXX_STANDARD 14)
@@ -64,7 +68,6 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 #PANGOLIN
 find_package(Pangolin REQUIRED)
 include_directories(${Pangolin_INCLUDE_DIRS})
-
 
 
 include_directories(
@@ -110,14 +113,14 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 # 输出可执行文件
 ############################################################
 ## 二进制文件输出路径
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/RGB-D)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/Examples/RGB-D)
 
 
 add_executable(rgbd_tum
 Examples/RGB-D/rgbd_tum.cc)
 target_link_libraries(rgbd_tum ${PROJECT_NAME})
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Stereo)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/Examples/Stereo)
 
 add_executable(stereo_kitti
 Examples/Stereo/stereo_kitti.cc)
@@ -128,7 +131,7 @@ Examples/Stereo/stereo_euroc.cc)
 target_link_libraries(stereo_euroc ${PROJECT_NAME})
 
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Monocular)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/Examples/Monocular)
 
 add_executable(mono_tum
 Examples/Monocular/mono_tum.cc)
@@ -143,7 +146,7 @@ Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
 
 # Self example
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/myvideo)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/Examples/myvideo)
 add_executable(myvideo Examples/myvideo/myvideo.cpp)
 target_link_libraries(myvideo ${PROJECT_NAME})
 
