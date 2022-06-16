@@ -203,10 +203,12 @@ static void computeOrbDescriptor(const KeyPoint& kpt, const Mat& img, const Poin
     #undef GET_VALUE
 }
 
-//下面就是预先定义好的随机点集，256是指可以提取出256bit的描述子信息，每个bit由一对点比较得来；4=2*2，前面的2是需要两个点（一对点）进行比较，后面的2是一个点有两个坐标
+// 预先定义好的随机点集，256是指可以提取出256bit的描述子信息，每个bit由一对点比较得来
+// 4=2*2，前面的2是需要两个点（一对点）进行比较，后面的2是一个点有两个坐标
+
 static int bit_pattern_31_[256*4] =
 {
-    8,-3, 9,5/*mean (0), correlation (0)*/,				//后面的均值和相关性没有看懂是什么意思
+    8,-3, 9,5/*mean (0), correlation (0)*/,				
     4,2, 7,-12/*mean (1.12461e-05), correlation (0.0437584)*/,
     -11,9, -8,2/*mean (3.37382e-05), correlation (0.0617409)*/,
     7,-12, 12,-13/*mean (5.62303e-05), correlation (0.0636977)*/,
@@ -1073,6 +1075,7 @@ void ORBextractor::ComputeKeyPointsOctTree(
 		//计算网格在当前层的图像有的行数和列数
         const int nCols = width/W;
         const int nRows = height/W;
+
 		//计算每个图像网格所占的像素行数和列数
         const int wCell = ceil(width/nCols);
         const int hCell = ceil(height/nRows);
@@ -1617,7 +1620,7 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
 		// 注意：提取特征点的时候，使用的是清晰的原图像；这里计算描述子的时候，为了避免图像噪声的影响，使用了高斯模糊
         GaussianBlur(workingMat, 		//源图像
 					 workingMat, 		//输出图像
-					 Size(7, 7), 		//高斯滤波器kernel大小，必须为正的奇数
+					 Size(9, 9), 		//高斯滤波器kernel大小，必须为正的奇数
 					 2, 				//高斯滤波在x方向的标准差
 					 2, 				//高斯滤波在y方向的标准差
 					 BORDER_REFLECT_101);//边缘拓展点插值类型
@@ -1636,7 +1639,6 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
 
         // Scale keypoint coordinates
 		// Step 6 对非第0层图像中的特征点的坐标恢复到第0层图像（原图像）的坐标系下
-        // ? 得到所有层特征点在第0层里的坐标放到_keypoints里面
 		// 对于第0层的图像特征点，他们的坐标就不需要再进行恢复了
         if (level != 0)
         {

@@ -297,17 +297,26 @@ protected:
   struct Node 
   {
     /// Node id
+    // 节点唯一的ID号
     NodeId id;
+    
     /// Weight if the node is a word
+    // 单词的权重
     WordValue weight;
+
     /// Children 
+    // 存储该节点的子节点
     vector<NodeId> children;
+
     /// Parent node (undefined in case of root)
     NodeId parent;
+
     /// Node descriptor
+    // 节点的描述子
     TDescriptor descriptor;
 
     /// Word id if the node is a word
+    // 叶子节点才有的word id
     WordId word_id;
 
     /**
@@ -1170,7 +1179,6 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
 
       //  将当前描述子转化为Word id， Word weight，节点所属的父节点id
       // （这里的父节点不是叶子的上一层，它距离叶子深度为levelsup）
-      // w is the idf value if TF_IDF, 1 if TF 
       transform(*fit, id, w, &nid, levelsup);
       
       if(w > 0) // not stopped

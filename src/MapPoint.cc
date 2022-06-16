@@ -225,15 +225,18 @@ namespace ORB_SLAM2
             mbBad = true;
             // 把mObservations转存到obs，obs和mObservations里存的是指针，赋值过程为浅拷贝
             obs = mObservations;
+            
             // 把mObservations指向的内存释放，obs作为局部变量之后自动删除
             mObservations.clear();
         }
+
         for (map<KeyFrame *, size_t>::iterator mit = obs.begin(), mend = obs.end(); mit != mend; mit++)
         {
             KeyFrame *pKF = mit->first;
             // 告诉可以观测到该MapPoint的KeyFrame，该MapPoint被删了
             pKF->EraseMapPointMatch(mit->second);
         }
+
         // 擦除该MapPoint申请的内存
         mpMap->EraseMapPoint(this);
     }
@@ -494,6 +497,7 @@ namespace ORB_SLAM2
         map<KeyFrame *, size_t> observations;
         KeyFrame *pRefKF;
         cv::Mat Pos;
+
         {
             unique_lock<mutex> lock1(mMutexFeatures);
             unique_lock<mutex> lock2(mMutexPos);
@@ -513,6 +517,7 @@ namespace ORB_SLAM2
         // 初始值为0向量，累加为归一化向量，最后除以总数n
         cv::Mat normal = cv::Mat::zeros(3, 1, CV_32F);
         int n = 0;
+        
         for (map<KeyFrame *, size_t>::iterator mit = observations.begin(), mend = observations.end(); mit != mend; mit++)
         {
             KeyFrame *pKF = mit->first;

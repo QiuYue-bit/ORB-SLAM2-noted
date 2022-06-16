@@ -322,7 +322,6 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
 
     list<pair<float,KeyFrame*> > lScoreAndMatch;
 
-    int nscores=0;
 
     // Compute similarity score.
     // Step 3：遍历上述关键帧，挑选出共有单词数大于阈值1的及其和当前帧单词匹配得分存入lScoreAndMatch
@@ -333,7 +332,6 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
         // 当前帧F只和具有共同单词较多（大于minCommonWords）的关键帧进行比较
         if(pKFi->mnRelocWords>minCommonWords)
         {
-            nscores++;  // 这个变量后面没有用到
             // 用mBowVec来计算两者的相似度得分
             float si = mpVoc->score(F->mBowVec,pKFi->mBowVec);
             pKFi->mRelocScore=si;

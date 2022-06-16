@@ -439,6 +439,7 @@ bool LoopClosing::ComputeSim3()
         // 遍历每一个候选帧
         for(int i=0; i<nInitialCandidates; i++)
         {
+            // 在上一步粗糙匹配中剔除
             if(vbDiscarded[i])
                 continue;
 
@@ -458,6 +459,7 @@ bool LoopClosing::ComputeSim3()
             Sim3Solver* pSolver = vpSim3Solvers[i];
 
             // 最多迭代5次，返回的Scm是候选帧pKF到当前帧mpCurrentKF的Sim3变换（T12）
+            // similarity m to current
             cv::Mat Scm  = pSolver->iterate(5,bNoMore,vbInliers,nInliers);
 
             // If Ransac reachs max. iterations discard keyframe
@@ -469,7 +471,7 @@ bool LoopClosing::ComputeSim3()
             }
 
             // If RANSAC returns a Sim3, perform a guided matching and optimize with all correspondences
-            // 如果计算出了Sim3变换，继续匹配出更多点并优化。因为之前 SearchByBoW 匹配可能会有遗漏
+            // 如果计算出了Sim3变换，继续匹配出更多点并优化。因为之前 SearchByBoW 匹配可能会有遗漏 之前是粗优化
             if(!Scm.empty())
             {
                 // 取出经过Sim3Solver 后匹配点中的内点集合

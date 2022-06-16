@@ -182,7 +182,9 @@ public:
      * @see Tracking::TrackLocalMap()
      */
     void IncreaseFound(int n=1);
-    //? 这个比例是?
+
+    // 理论上被看到
+    // 但是实际上投影下来没找到匹配关系的地图点的比例
     float GetFoundRatio();
     /**
      * @brief 获取被找到的次数
@@ -220,6 +222,7 @@ public:
     float GetMinDistanceInvariance();
     //?
     float GetMaxDistanceInvariance();
+    
     //? 尺度预测?
     int PredictScale(const float &currentDist, KeyFrame*pKF);
     //? 
@@ -227,8 +230,11 @@ public:
 
 public:
     long unsigned int mnId; ///< Global ID for MapPoint
+
     static long unsigned int nNextId;
+
     const long int mnFirstKFid; ///< 创建该MapPoint的关键帧ID
+
     //呐,如果是从帧中创建的话,会将普通帧的id存放于这里
     const long int mnFirstFrame; ///< 创建该MapPoint的帧ID（即每一关键帧有一个帧ID）
 
@@ -265,11 +271,14 @@ public:
     // Variables used by loop closing -- 一般都是为了避免重复操作
     /// 标记当前地图点是作为哪个"当前关键帧"的回环地图点(即回环关键帧上的地图点),在回环检测线程中被调用
     long unsigned int mnLoopPointForKF;
+    
     // 如果这个地图点对应的关键帧参与到了回环检测的过程中,那么在回环检测过程中已经使用了这个关键帧修正只有的位姿来修正了这个地图点,那么这个标志位置位
     long unsigned int mnCorrectedByKF;
     long unsigned int mnCorrectedReference;
+
     // 全局BA优化后(如果当前地图点参加了的话),这里记录优化后的位姿
     cv::Mat mPosGBA;
+
     // 如果当前点的位姿参与到了全局BA优化,那么这个变量记录了那个引起全局BA的"当前关键帧"的id
     long unsigned int mnBAGlobalForKF;
 

@@ -193,10 +193,11 @@ namespace ORB_SLAM2
     {
         // 互斥锁，防止同时操作共享数据产生冲突
         unique_lock<mutex> lock(mMutexConnections);
-        // http://stackoverflow.com/questions/3389648/difference-between-stdliststdpair-and-stdmap-in-c-stl (std::map 和 std::list<std::pair>的区别)
+
 
         vector<pair<int, KeyFrame *>> vPairs;
         vPairs.reserve(mConnectedKeyFrameWeights.size());
+
         // 取出所有连接的关键帧，mConnectedKeyFrameWeights的类型为std::map<KeyFrame*,int>，而vPairs变量将共视的地图点数放在前面，利于排序
         for (map<KeyFrame *, int>::iterator mit = mConnectedKeyFrameWeights.begin(), mend = mConnectedKeyFrameWeights.end(); mit != mend; mit++)
             vPairs.push_back(make_pair(mit->second, mit->first));
@@ -458,7 +459,8 @@ namespace ORB_SLAM2
         // If the counter is greater than threshold add connection
         // In case no keyframe counter is over threshold add the one with maximum counter
         int nmax = 0; // 记录最高的共视程度
-        KeyFrame *pKFmax = NULL;
+        KeyFrame *pKFmax = NULL; // 共视程度最高的关键帧
+
         // 至少有15个共视地图点才会添加共视关系
         int th = 15;
 
@@ -481,6 +483,7 @@ namespace ORB_SLAM2
             {
                 // 对应权重需要大于阈值，对这些关键帧建立连接
                 vPairs.push_back(make_pair(mit->second, mit->first));
+
                 // 对方关键帧也要添加这个信息
                 // 更新KFcounter中该关键帧的mConnectedKeyFrameWeights
                 // 更新其它KeyFrame的mConnectedKeyFrameWeights，更新其它关键帧与当前帧的连接权重
@@ -489,6 +492,7 @@ namespace ORB_SLAM2
         }
 
         //  Step 3 如果没有超过阈值的权重，则对权重最大的关键帧建立连接
+        // 至少都得有一个链接关系
         if (vPairs.empty())
         {
             // 如果每个关键帧与它共视的关键帧的个数都少于th，
@@ -501,6 +505,7 @@ namespace ORB_SLAM2
         //  Step 4 对满足共视程度的关键帧对更新连接关系及权重（从大到小）
         // vPairs里存的都是相互共视程度比较高的关键帧和共视权重，接下来由大到小进行排序
         sort(vPairs.begin(), vPairs.end()); // sort函数默认升序排列
+
         // 将排序后的结果分别组织成为两种数据类型
         list<KeyFrame *> lKFs;
         list<int> lWs;
@@ -516,8 +521,11 @@ namespace ORB_SLAM2
 
             // mspConnectedKeyFrames = spConnectedKeyFrames;
             // 更新当前帧与其它关键帧的连接权重
+            // TODO 这里有个BUG 当前帧的mConnectedKeyFrameWeights存储不止大于15的
             mConnectedKeyFrameWeights = KFcounter;
+
             mvpOrderedConnectedKeyFrames = vector<KeyFrame *>(lKFs.begin(), lKFs.end());
+
             mvOrderedWeights = vector<int>(lWs.begin(), lWs.end());
 
             // Step 5 更新生成树的连接
@@ -631,7 +639,7 @@ namespace ORB_SLAM2
  */
     void KeyFrame::SetBadFlag()
     {
-        // Step 1 首先处理一下删除不了的特殊情况
+        // step1. 特殊情况:豁免 第一帧 和 具有mbNotErase特权的帧
         {
             unique_lock<mutex> lock(mMutexConnections);
 
@@ -646,20 +654,21 @@ namespace ORB_SLAM2
             }
         }
 
-        // Step 2 遍历所有和当前关键帧相连的关键帧，删除他们与当前关键帧的联系
+        // Step 2 从共视关键帧的共视图中删除本关键帧
         for (map<KeyFrame *, int>::iterator mit = mConnectedKeyFrameWeights.begin(), mend = mConnectedKeyFrameWeights.end(); mit != mend; mit++)
-            mit->first->EraseConnection(this); // 让其它的关键帧删除与自己的联系
+            // 让其它的关键帧删除与自己的联系
+            mit->first->EraseConnection(this); 
 
-        // Step 3 遍历每一个当前关键帧的地图点，删除每一个地图点和当前关键帧的联系
+
+        // Step 3 删除当前关键帧中地图点对本帧的观测
         for (size_t i = 0; i < mvpMapPoints.size(); i++)
             if (mvpMapPoints[i])
                 mvpMapPoints[i]->EraseObservation(this);
 
         {
+            // 删除当前帧的共视图
             unique_lock<mutex> lock(mMutexConnections);
             unique_lock<mutex> lock1(mMutexFeatures);
-
-            // 清空自己与其它关键帧之间的联系
             mConnectedKeyFrameWeights.clear();
             mvpOrderedConnectedKeyFrames.clear();
 
@@ -667,6 +676,7 @@ namespace ORB_SLAM2
             // Step 4 更新生成树，主要是处理好父子关键帧，不然会造成整个关键帧维护的图断裂，或者混乱
             // 候选父关键帧
             set<KeyFrame *> sParentCandidates;
+
             // 将当前帧的父关键帧放入候选父关键帧
             sParentCandidates.insert(mpParent);
 
@@ -741,6 +751,7 @@ namespace ORB_SLAM2
                 }
 
             mpParent->EraseChild(this);
+            
             // mTcp 表示原父关键帧到当前关键帧的位姿变换，在保存位姿的时候使用
             mTcp = Tcw * mpParent->GetPoseInverse();
             // 标记当前关键帧已经挂了
@@ -875,10 +886,12 @@ namespace ORB_SLAM2
         }
 
         vector<float> vDepths;
+        
         vDepths.reserve(N);
         cv::Mat Rcw2 = Tcw_.row(2).colRange(0, 3);
         Rcw2 = Rcw2.t();
         float zcw = Tcw_.at<float>(2, 3);
+
         // 遍历每一个地图点,计算并保存其在当前关键帧下的深度
         for (int i = 0; i < N; i++)
         {

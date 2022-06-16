@@ -278,6 +278,7 @@ namespace ORB_SLAM2
         // 将属于同一节点(特定层)的ORB特征进行匹配
         DBoW2::FeatureVector::const_iterator KFit = vFeatVecKF.begin();
         DBoW2::FeatureVector::const_iterator Fit = F.mFeatVec.begin();
+        
         DBoW2::FeatureVector::const_iterator KFend = vFeatVecKF.end();
         DBoW2::FeatureVector::const_iterator Fend = F.mFeatVec.end();
 
@@ -323,6 +324,7 @@ namespace ORB_SLAM2
                             continue;
 
                         const cv::Mat &dF = F.mDescriptors.row(realIdxF); // 取出F中该特征对应的描述子
+                        
                         // 计算描述子的距离
                         const int dist = DescriptorDistance(dKF, dF);
 
@@ -582,6 +584,7 @@ namespace ORB_SLAM2
         int windowSize)
     {
         int nmatches = 0;
+
         // F1中特征点和F2中匹配关系
         // 1代表者这个容器的大小是是按照F1特征点数目分配空间
         // 默认-1代表没有匹配，
@@ -598,16 +601,20 @@ namespace ORB_SLAM2
         //  旋转直方图的分辨率为12度，每个直方图占12度
         const float factor = HISTO_LENGTH / 360.0f;
 
-        // 匹配点对距离，注意是按照F2特征点数目分配空间，初始化的匹配点对距离设置为最大
+        // 匹配点对距离，初始设置为最大
+        // 按照 当前帧的特征点数目 分配空间
         vector<int> vMatchedDistance(F2.mvKeysUn.size(), INT_MAX);
 
         // 从帧2到帧1的反向匹配，注意是按照F2特征点数目分配空间
+        // 在遍历参考帧1中特征点对当前帧特征点进行匹配的过程中
+        // 防止当前帧2的一个特征点同时被帧1的多个特征点匹配上
         vector<int> vnMatches21(F2.mvKeysUn.size(), -1);
 
-        // 遍历帧1中的所有特征点
+        // 遍历参考帧1中的所有特征点
         for (size_t i1 = 0, iend1 = F1.mvKeysUn.size(); i1 < iend1; i1++)
         {
             cv::KeyPoint kp1 = F1.mvKeysUn[i1];
+
             // 提取出帧1中特征点的金字塔层级
             int level1 = kp1.octave;
             // 只使用原始图像上提取的特征点
@@ -641,6 +648,7 @@ namespace ORB_SLAM2
 
                 if (vMatchedDistance[i2] <= dist)
                     continue;
+
                 // 如果当前匹配距离更小，更新最佳次佳距离
                 if (dist < bestDist)
                 {
@@ -671,6 +679,7 @@ namespace ORB_SLAM2
                         vnMatches12[vnMatches21[bestIdx2]] = -1;
                         nmatches--;
                     }
+
                     // 次优的匹配关系，双向建立
                     // vnMatches12保存参考帧F1和F2匹配关系，index保存是F1对应特征点索引，值保存的是匹配好的F2特征点索引
                     vnMatches12[i1] = bestIdx2;
@@ -687,12 +696,15 @@ namespace ORB_SLAM2
                         float rot = F1.mvKeysUn[i1].angle - F2.mvKeysUn[bestIdx2].angle;
                         if (rot < 0.0)
                             rot += 360.0f;
+
                         // 前面factor = HISTO_LENGTH/360.0f
                         // bin = rot / 360.of * HISTO_LENGTH 表示当前rot被分配在第几个直方图bin
                         int bin = round(rot * factor);
                         // 如果bin 满了又是一个轮回
                         if (bin == HISTO_LENGTH)
                             bin = 0;
+
+                        // 断言判断
                         assert(bin >= 0 && bin < HISTO_LENGTH);
                         rotHist[bin].push_back(i1);
                     }
@@ -908,11 +920,14 @@ namespace ORB_SLAM2
 
         // Compute epipole in second image
         // Step 1 计算KF1的相机中心在KF2图像平面的二维像素坐标
+
         // KF1相机光心在世界坐标系坐标Cw
         cv::Mat Cw = pKF1->GetCameraCenter();
+
         // KF2相机位姿R2w,t2w,是世界坐标系到相机坐标系
         cv::Mat R2w = pKF2->GetRotation();
         cv::Mat t2w = pKF2->GetTranslation();
+
         // KF1的相机光心转化到KF2坐标系中的坐标
         cv::Mat C2 = R2w * Cw + t2w;
         const float invz = 1.0f / C2.at<float>(2);
@@ -1969,6 +1984,7 @@ namespace ORB_SLAM2
 
                     //预测尺度
                     int nPredictedLevel = pMP->PredictScale(dist3D, &CurrentFrame);
+					
                     // Search in a window
                     // 搜索半径和尺度相关
                     const float radius = th * CurrentFrame.mvScaleFactors[nPredictedLevel];

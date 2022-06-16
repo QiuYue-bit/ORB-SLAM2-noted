@@ -94,11 +94,12 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
     vector<bool> vbNotIncludedMP;
     vbNotIncludedMP.resize(vpMP.size());
 
-    // Step 1 初始化g2o优化器
+    // Step 1 初始化g2o优化器 Eigen求解器
     g2o::SparseOptimizer optimizer;
     g2o::BlockSolver_6_3::LinearSolverType * linearSolver;
     linearSolver = new g2o::LinearSolverEigen<g2o::BlockSolver_6_3::PoseMatrixType>();
     g2o::BlockSolver_6_3 * solver_ptr = new g2o::BlockSolver_6_3(linearSolver);
+
     // 使用LM算法优化
     g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(solver_ptr);
     optimizer.setAlgorithm(solver);
@@ -126,8 +127,10 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
         // 对于每一个能用的关键帧构造SE3顶点,其实就是当前关键帧的位姿
         g2o::VertexSE3Expmap * vSE3 = new g2o::VertexSE3Expmap();
         vSE3->setEstimate(Converter::toSE3Quat(pKF->GetPose()));
+
         // 顶点的id就是关键帧在所有关键帧中的id
         vSE3->setId(pKF->mnId); 
+
         // 只有第0帧关键帧不优化（参考基准）
         vSE3->setFixed(pKF->mnId==0);
 
@@ -153,15 +156,17 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
 
         // 创建顶点
         g2o::VertexSBAPointXYZ* vPoint = new g2o::VertexSBAPointXYZ();
+
         // 注意由于地图点的位置是使用cv::Mat数据类型表示的,这里需要转换成为Eigen::Vector3d类型
         vPoint->setEstimate(Converter::toVector3d(pMP->GetWorldPos()));
+
         // 前面记录maxKFid 是在这里使用的
         const int id = pMP->mnId+maxKFid+1;
         vPoint->setId(id);
+
         // 注意g2o在做BA的优化时必须将其所有地图点全部schur掉，否则会出错。
         // 原因是使用了g2o::LinearSolver<BalBlockSolver::PoseMatrixType>这个类型来指定linearsolver,
         // 其中模板参数当中的位姿矩阵类型在程序中为相机姿态参数的维度，于是BA当中schur消元后解得线性方程组必须是只含有相机姿态变量。
-        // Ceres库则没有这样的限制
         vPoint->setMarginalized(true);
         optimizer.addVertex(vPoint);
 
@@ -170,6 +175,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
 
         // 边计数
         int nEdges = 0;
+
         //SET EDGES
         // Step 3：向优化器添加投影边（是在遍历地图点、添加地图点的顶点的时候顺便添加的）
         // 遍历观察到当前地图点的所有关键帧
@@ -182,12 +188,13 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
                 continue;
 
             nEdges++;
+
             // 取出该地图点对应该关键帧的2D特征点
             const cv::KeyPoint &kpUn = pKF->mvKeysUn[mit->second];
 
+            // 单目相机
             if(pKF->mvuRight[mit->second]<0)
             {
-                // 以下是单目相机模式：
                 // 构造观测
                 Eigen::Matrix<double,2,1> obs;
                 obs << kpUn.pt.x, kpUn.pt.y;
@@ -198,12 +205,15 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
                 e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(id)));
                 // 边连接的第1号顶点对应的是第id个关键帧
                 e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(pKF->mnId)));
+
                 e->setMeasurement(obs);
+
                 // 信息矩阵，也是协方差，表明了这个约束的观测在各个维度（x,y）上的可信程度，在我们这里对于具体的一个点，两个坐标的可信程度都是相同的，
                 // 其可信程度受到特征点在图像金字塔中的图层有关，图层越高，可信度越差
                 // 为了避免出现信息矩阵中元素为负数的情况，这里使用的是sigma^(-2)
                 const float &invSigma2 = pKF->mvInvLevelSigma2[kpUn.octave];
                 e->setInformation(Eigen::Matrix2d::Identity()*invSigma2);
+
                 // 使用鲁棒核函数
                 if(bRobust)
                 {
@@ -219,6 +229,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
                 e->fy = pKF->fy;
                 e->cx = pKF->cx;
                 e->cy = pKF->cy;
+
                 // 添加边
                 optimizer.addEdge(e);
             }
@@ -246,6 +257,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
                 {
                     g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
                     e->setRobustKernel(rk);
+
                     // 由于现在的观测有三个值，重投影误差会有三个平方项的和组成，因此对应的卡方分布的自由度为3，所以这里设置的也是自由度为3的时候的阈值
                     rk->setDelta(thHuber3D);
                 }
@@ -291,6 +303,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
         // 获取到优化后的位姿
         g2o::VertexSE3Expmap* vSE3 = static_cast<g2o::VertexSE3Expmap*>(optimizer.vertex(pKF->mnId));
         g2o::SE3Quat SE3quat = vSE3->estimate();
+
         if(nLoopKF==0)
         {
             // 原则上来讲不会出现"当前闭环关键帧是第0帧"的情况,如果这种情况出现,只能够说明是在创建初始地图点的时候调用的这个全局BA函数.
@@ -335,6 +348,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
             Converter::toCvMat(vPoint->estimate()).copyTo(pMP->mPosGBA);
             pMP->mnBAGlobalForKF = nLoopKF;
         }// 判断是因为什么原因调用的GBA
+        
     } // 遍历所有地图点,保存优化之后地图点的位姿
 }
 
@@ -434,9 +448,11 @@ int Optimizer::PoseOptimization(Frame *pFrame)
                 // 设置边的顶点
                 e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(0)));
                 e->setMeasurement(obs);
+
                 // 这个点的可信程度和特征点所在的图层有关
                 const float invSigma2 = pFrame->mvInvLevelSigma2[kpUn.octave];
                 e->setInformation(Eigen::Matrix2d::Identity()*invSigma2);
+                
                 // 在这里使用了鲁棒核函数
                 g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
                 e->setRobustKernel(rk);

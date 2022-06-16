@@ -37,7 +37,7 @@ using namespace std;
  * @param[out] vTimestamps              图像序列中每张图像的时间戳
  */
 static void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
-                vector<double> &vTimestamps);
+                       vector<double> &vTimestamps);
 
 // 主函数工作原理和 mono_euroc.cc 基本相同
 int main(int argc, char **argv)
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    // 读取图像路径和图像对于的时间戳
+    // 读取图像路径和图像的时间戳
     vector<string> vstrImageFilenames;
     vector<double> vTimestamps;
     LoadImages(string(argv[3]), vstrImageFilenames, vTimestamps);
@@ -61,6 +61,7 @@ int main(int argc, char **argv)
     ORB_SLAM2::System SLAM(argv[1], argv[2], ORB_SLAM2::System::MONOCULAR, true);
 
     // Vector for tracking time statistics
+    // 存储每帧跟踪消耗的时间
     vector<float> vTimesTrack;
     vTimesTrack.resize(nImages);
 
@@ -77,7 +78,10 @@ int main(int argc, char **argv)
     {
         // * Step 1 读取图像
         im = cv::imread(vstrImageFilenames[ni], CV_LOAD_IMAGE_UNCHANGED);
+
+        // 图像的时间戳
         double tframe = vTimestamps[ni];
+
         if (im.empty())
         {
             cerr << endl
@@ -85,32 +89,43 @@ int main(int argc, char **argv)
             return 1;
         }
 
-
         std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
 
         // * Step 2前端跟踪
-        // 自动通知后端和回环线程
         SLAM.TrackMonocular(im, tframe);
 
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
 
         double ttrack = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1).count();
 
-        // 前端跟踪耗时统计
+        // 存储每张图片的跟踪耗时
         vTimesTrack[ni] = ttrack;
 
-        // Wait to load the next frame
+        // 两帧之间的时间戳之差
         double T = 0;
         if (ni < nImages - 1)
+        {
+            // 两张图象的时间差
             T = vTimestamps[ni + 1] - tframe;
+        }
         else if (ni > 0)
+        {
+            // 处理最后一帧
             T = tframe - vTimestamps[ni - 1];
+        }
 
+        // 延时处理，使得和图像具有相同的频率。
         if (ttrack < T)
-            usleep((T - ttrack) * 1e6);
+        {
+            // usleep((T - ttrack) * 1e6);
+        }
+        else
+        {
+            cout << "跟踪消耗的时间大于帧率，无法实时计算" << endl;
+        }
     }
 
-    // Stop all threads
+    // 停止所有的线程，回收资源
     SLAM.Shutdown();
 
     // Tracking time statistics
@@ -129,7 +144,8 @@ int main(int argc, char **argv)
     cout << "median tracking time: " << vTimesTrack[nImages / 2] << endl;
     cout << "mean tracking time: " << totaltime / nImages << endl;
 
-    // 保存相机位姿Tum格式
+    // 存储所有的关键帧的位姿 ， Tum 格式
+    // mTimeStamp ---- t[3] ------ q[4]
     SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
 
     return 0;

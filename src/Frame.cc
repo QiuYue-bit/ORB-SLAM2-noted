@@ -147,6 +147,7 @@ namespace ORB_SLAM2
                           imLeft);            //图像数据
                                               //对右目图像提取ORB特征，参数含义同上
         thread threadRight(&Frame::ExtractORB, this, 1, imRight);
+        
         //等待两张图像特征点提取过程完成
         threadLeft.join();
         threadRight.join();
@@ -700,21 +701,22 @@ namespace ORB_SLAM2
  * @brief 计算当前帧特征点对应的词袋Bow，主要是mBowVec 和 mFeatVec
  * 
  */
-    void Frame::ComputeBoW()
-    {
+void Frame::ComputeBoW()
+{
 
-        // 判断是否以前已经计算过了，计算过了就跳过
-        if (mBowVec.empty())
-        {
-            // 将描述子mDescriptors转换为DBOW要求的输入格式
-            vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);
-            // 将特征点的描述子转换成词袋向量mBowVec以及特征向量mFeatVec
-            mpORBvocabulary->transform(vCurrentDesc, //当前的描述子vector
-                                       mBowVec,      //输出，词袋向量，记录的是单词的id及其对应权重TF-IDF值
-                                       mFeatVec,     //输出，记录node id及其对应的图像 feature对应的索引
-                                       4);           //4表示从叶节点向前数的层数
-        }
+    // 判断是否以前已经计算过了，计算过了就跳过
+    if (mBowVec.empty())
+    {
+        // 将描述子mDescriptors转换为DBOW要求的输入格式
+        vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);
+        
+        // 将特征点的描述子转换成词袋向量mBowVec以及特征向量mFeatVec
+        mpORBvocabulary->transform(vCurrentDesc, //当前的描述子vector
+                                    mBowVec,      //输出，词袋向量，记录的是单词的id及其对应权重TF-IDF值
+                                    mFeatVec,     //输出，记录node id及其对应的图像 feature对应的索引
+                                    4);           //4表示从叶节点向前数的层数
     }
+}
 
     /**
  * @brief 用内参对特征点去畸变，结果报存在mvKeysUn中
@@ -1169,27 +1171,19 @@ namespace ORB_SLAM2
     //当某个特征点的深度信息或者双目信息有效时,将它反投影到三维世界坐标系中
     cv::Mat Frame::UnprojectStereo(const int &i)
     {
-        // KeyFrame::UnprojectStereo
-        // 貌似这里普通帧的反投影函数操作过程和关键帧的反投影函数操作过程有一些不同：
-        // mvDepth是在ComputeStereoMatches函数中求取的
-        // TODO 验证下面的这些内容. 虽然现在我感觉是理解错了,但是不确定;如果确定是真的理解错了,那么就删除下面的内容
-        // mvDepth对应的校正前的特征点，可这里却是对校正后特征点反投影
-        // KeyFrame::UnprojectStereo中是对校正前的特征点mvKeys反投影
-        // 在ComputeStereoMatches函数中应该对校正后的特征点求深度？？ (wubo???)
-        // NOTE 不过我记得好像上面的ComputeStereoMatches函数就是对于双目相机设计的，而双目相机的图像默认都是经过了校正的啊
 
         /** 步骤如下: <ul> */
 
         /** <li> 获取这个特征点的深度（这里的深度可能是通过双目视差得出的，也可能是直接通过深度图像的出来的） </li> */
         const float z = mvDepth[i];
         /** <li> 判断这个深度是否合法 </li> <ul> */
-        //（其实这里也可以不再进行判断，因为在计算或者生成这个深度的时候都是经过检查了的_不行,RGBD的不是）
         if (z > 0)
         {
             /** <li> 如果合法,就利用<b></b>矫正后的特征点的坐标 Frame::mvKeysUn 和相机的内参数,通过反投影和位姿变换得到空间点的坐标 </li> */
             //获取像素坐标，注意这里是矫正后的特征点的坐标
             const float u = mvKeysUn[i].pt.x;
             const float v = mvKeysUn[i].pt.y;
+
             //计算在当前相机坐标系下的坐标
             const float x = (u - cx) * z * invfx;
             const float y = (v - cy) * z * invfy;

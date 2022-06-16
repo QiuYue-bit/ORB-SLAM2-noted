@@ -145,6 +145,7 @@ PnPsolver::PnPsolver(const Frame &F, const vector<MapPoint*> &vpMapPointMatches)
                 const cv::KeyPoint &kp = F.mvKeysUn[i];//得到2维特征点, 将KeyPoint类型变为Point2f
 
                 mvP2D.push_back(kp.pt);   //存放2维特征点
+
                 mvSigma2.push_back(F.mvLevelSigma2[kp.octave]);   //记录特征点是在哪一层提取出来的
 
                 cv::Mat Pos = pMP->GetWorldPos();   //世界坐标系下的3D点
@@ -192,22 +193,19 @@ void PnPsolver::SetRansacParameters(double probability, int minInliers, int maxI
 {
     // 注意这次里在每一次采样的过程中,需要采样四个点,即最小集应该设置为4
 
-    // Step 1 获取给定的参数
+    /// Step 1 获取给定的参数 
     mRansacProb = probability;
     mRansacMinInliers = minInliers;
     mRansacMaxIts = maxIterations;
     mRansacEpsilon = epsilon;         
     mRansacMinSet = minSet;           
 
-
-    // Step 2 计算理论内点数,并且选 min(给定内点数,最小集,理论内点数) 作为最终在迭代过程中使用的最小内点数
-    N = mvP2D.size(); // number of correspondences, 所有二维特征点个数
-
+    // number of correspondences, 所有二维特征点个数
+    N = mvP2D.size(); 
     mvbInliersi.resize(N);// inlier index, mvbInliersi记录每次迭代inlier的点
 
     // Adjust Parameters according to number of correspondences
-    // 再根据 epsilon 来计算理论上的内点数;
-    // NOTICE 实际在计算的过程中使用的 mRansacMinInliers = min(给定内点数,最小集,理论内点数)
+    // 根据点出的内点比例来计算,最少存在的内点数
     int nMinInliers = N*mRansacEpsilon; 
     if(nMinInliers<mRansacMinInliers)
         nMinInliers=mRansacMinInliers;
@@ -216,7 +214,6 @@ void PnPsolver::SetRansacParameters(double probability, int minInliers, int maxI
     mRansacMinInliers = nMinInliers;
 
     // Step 3 根据敲定的"最小内点数"来调整 内点数/总体数 这个比例 epsilon
-
     // 这个变量却是希望取得高一点,也可以理解为想让和调整之后的内点数 mRansacMinInliers 保持一致吧
     if(mRansacEpsilon<(float)mRansacMinInliers/N)
         mRansacEpsilon=(float)mRansacMinInliers/N;
@@ -288,6 +285,7 @@ cv::Mat PnPsolver::iterate(int nIterations, bool &bNoMore, vector<bool> &vbInlie
         // 迭代次数更新
         nCurrentIterations++;
         mnIterations++;
+        
         // 清空已有的匹配点的计数,为新的一次迭代作准备
         reset_correspondences();
 
@@ -306,6 +304,7 @@ cv::Mat PnPsolver::iterate(int nIterations, bool &bNoMore, vector<bool> &vbInlie
             add_correspondence(mvP3Dw[idx].x,mvP3Dw[idx].y,mvP3Dw[idx].z,mvP2D[idx].x,mvP2D[idx].y);
 
             // 从"可用索引表"中删除这个已经被使用的点
+ // ！！！将已经被选中参与ransac的点去除（用vector最后一个点覆盖），避免抽取同一个数据参与ransac
             vAvailableIndices[randi] = vAvailableIndices.back();
             vAvailableIndices.pop_back();
         } // 选取最小集

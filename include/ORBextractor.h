@@ -75,9 +75,6 @@ public:
 class ORBextractor
 {
 public:
-    //TODO 但是在程序中好像并没有被用到
-	///定义一个枚举类型用于表示使用HARRIS响应值还是使用FAST响应值
-    enum {HARRIS_SCORE=0, FAST_SCORE=1 };
 
     /**
      * @brief 构造函数

@@ -321,7 +321,6 @@ public:
 
     // Threshold close/far points. Close points are inserted from 1 view.
     // Far points are inserted as in the monocular case from 2 views.
-	//TODO 这里它所说的话还不是很理解。尤其是后面的一句。
     //而且,这个阈值不应该是在哪个帧中都一样吗?
     ///判断远点和近点的深度阈值
     float mThDepth;
@@ -370,6 +369,7 @@ public:
     // 内部实际存储的是std::map<WordId, WordValue>
     // WordId 和 WordValue 表示Word在叶子中的id 和权重
     DBoW2::BowVector mBowVec;
+    
     // 内部实际存储 std::map<NodeId, std::vector<unsigned int> >
     // NodeId 表示节点id，std::vector<unsigned int> 中实际存的是该节点id下所有特征点在图像中的索引
     DBoW2::FeatureVector mFeatVec;

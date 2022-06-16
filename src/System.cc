@@ -82,6 +82,7 @@ namespace ORB_SLAM2
         mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
         // Create the Map
         mpMap = new Map();
+        
         // Create Drawers. These are used by the Viewer
         //这里的帧绘制器和地图绘制器将会被可视化的Viewer所使用
         mpFrameDrawer = new FrameDrawer(mpMap);
@@ -289,7 +290,9 @@ namespace ORB_SLAM2
         // Check mode change
         {
             // 独占锁，主要是为了mbActivateLocalizationMode和mbDeactivateLocalizationMode不会发生混乱
+            // TODO 这个锁是保护什么的？
             unique_lock<mutex> lock(mMutexMode);
+
             // mbActivateLocalizationMode为true会关闭局部地图线程
             if (mbActivateLocalizationMode)
             {
@@ -298,6 +301,7 @@ namespace ORB_SLAM2
                 // Wait until Local Mapping has effectively stopped
                 while (!mpLocalMapper->isStopped())
                 {
+                    // 休眠1ms
                     usleep(1000);
                 }
 
@@ -308,6 +312,7 @@ namespace ORB_SLAM2
                 // 关闭线程可以使得别的线程得到更多的资源
                 mbActivateLocalizationMode = false;
             }
+
             // 如果mbDeactivateLocalizationMode是true，局部地图线程就被释放, 关键帧从局部地图中删除.
             if (mbDeactivateLocalizationMode)
             {
@@ -382,6 +387,7 @@ namespace ORB_SLAM2
         //对局部建图线程和回环检测线程发送终止请求
         mpLocalMapper->RequestFinish();
         mpLoopCloser->RequestFinish();
+
         //如果使用了可视化窗口查看器
         if (mpViewer)
         {
@@ -402,8 +408,8 @@ namespace ORB_SLAM2
 
         if (mpViewer)
             //如果使用了可视化的窗口查看器执行这个
-            // TODO 但是不明白这个是做什么的。如果我注释掉了呢？
-            pangolin::BindToContext("ORB-SLAM2: Map Viewer");
+            // TODO TODO这个是什么？
+            pangolin::BindToContext("ORB-SLAM2: Map Viewer TODO这个是什么？");
     }
 
     //按照TUM格式保存相机运行轨迹并保存到指定的文件中
@@ -535,6 +541,7 @@ namespace ORB_SLAM2
             cv::Mat R = pKF->GetRotation().t();
             vector<float> q = Converter::toQuaternion(R);
             cv::Mat t = pKF->GetCameraCenter();
+
             //按照给定的格式输出到文件中
             f << setprecision(6) << pKF->mTimeStamp << setprecision(7) << " " << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2)
               << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
@@ -551,6 +558,7 @@ namespace ORB_SLAM2
     {
         cout << endl
              << "Saving camera trajectory to " << filename << " ..." << endl;
+       
         //检查输入数据的类型
         if (mSensor == MONOCULAR)
         {
@@ -564,11 +572,14 @@ namespace ORB_SLAM2
 
         // Transform all keyframes so that the first keyframe is at the origin.
         // After a loop closure the first keyframe might not be at the origin.
+        // 在优化之后，初始帧的位姿可能不在是原点了。
+        // 这儿需要把所有帧的位姿给恢复回远点
         cv::Mat Two = vpKFs[0]->GetPoseInverse();
 
         ofstream f;
         f.open(filename.c_str());
         f << fixed;
+
 
         // Frame pose is stored relative to its reference keyframe (which is optimized by BA and pose graph).
         // We need to get first the keyframe pose and then concatenate the relative transformation.
@@ -578,6 +589,8 @@ namespace ORB_SLAM2
         // which is true when tracking failed (lbL).
         list<ORB_SLAM2::KeyFrame *>::iterator lRit = mpTracker->mlpReferences.begin();
         list<double>::iterator lT = mpTracker->mlFrameTimes.begin();
+       
+        // TODO 这儿不是很理解
         for (list<cv::Mat>::iterator lit = mpTracker->mlRelativeFramePoses.begin(), lend = mpTracker->mlRelativeFramePoses.end(); lit != lend; lit++, lRit++, lT++)
         {
             ORB_SLAM2::KeyFrame *pKF = *lRit;
