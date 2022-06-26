@@ -198,6 +198,7 @@ namespace ORB_SLAM2
         // Step 3：当前处理关键帧中有效的地图点，更新normal，描述子等信息
         // TrackLocalMap中和当前帧新匹配上的地图点和当前关键帧进行关联绑定
         const vector<MapPoint *> vpMapPointMatches = mpCurrentKeyFrame->GetMapPointMatches();
+        
         // 对当前处理的这个关键帧中的所有的地图点展开遍历
         for (size_t i = 0; i < vpMapPointMatches.size(); i++)
         {
@@ -603,6 +604,7 @@ namespace ORB_SLAM2
                 // c.该MapPoint的平均观测方向和深度范围
                 pMP->UpdateNormalAndDepth();
 
+                // 
                 mpMap->AddMapPoint(pMP);
 
                 // Step 6.10：将新产生的点放入检测队列

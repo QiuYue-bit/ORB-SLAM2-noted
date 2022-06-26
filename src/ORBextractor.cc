@@ -1256,7 +1256,6 @@ void ORBextractor::ComputeKeyPointsOld(
         vector<int> iniXCol(levelCols);
         vector<int> iniYRow(levelRows);
 		
-		//TODO 那些只有一个特征点的图像cell的计数？
         int nNoMore = 0;
 		//存储需要进行分裂的图像cell计数
         int nToDistribute = 0;
@@ -1443,9 +1442,9 @@ void ORBextractor::ComputeKeyPointsOld(
 		//预分配2倍的期望特征点空间（因为实际的提取过程中，我们都是按照稍微超过期望值的特征点数目进行操作的）
         keypoints.reserve(nDesiredFeatures*2);
 
-		//计算在本层图像的时候，图像patch块经过尺度缩放之后的大小（这里的缩放因子就是自己正常认为的缩放因子）
-		//TODO 这里的patch用于进行什么操作？又为什么一定要在当前的图层上进行而不是在底层图像上进行？怀疑这个操作是和计算特征点方向有关
-		//的变量，但是目前还是没有在本文件中发现对这个变量的使用
+		// 计算在本层图像的时候，图像patch块经过尺度缩放之后的大小（这里的缩放因子就是自己正常认为的缩放因子）
+		// 这里的patch用于进行什么操作？又为什么一定要在当前的图层上进行而不是在底层图像上进行？怀疑这个操作是和计算特征点方向有关
+		// 的变量，但是目前还是没有在本文件中发现对这个变量的使用
         const int scaledPatchSize = PATCH_SIZE*mvScaleFactor[level];
 
         // Retain by score and transform coordinates
